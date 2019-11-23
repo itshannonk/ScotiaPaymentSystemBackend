@@ -59,7 +59,7 @@ def hello_get(request):
         Response object using `make_response`
         <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
     """
-    return 'return from hello_get function in main.py ' + request.url_root
+    return 'return from hello_get function in main.py ' + request.url
 
 
 def get_customer(request):
