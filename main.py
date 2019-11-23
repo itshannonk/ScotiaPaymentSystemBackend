@@ -47,6 +47,7 @@ at the root of your project named main.py
 """
 # import requests
 from flask import request
+from model import DataRetrieval
 
 
 def hello_get(request):
@@ -59,7 +60,9 @@ def hello_get(request):
         Response object using `make_response`
         <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
     """
-    return 'return from hello_get function in main.py ' + request.url
+    result = DataRetrieval.get_pls_work()
+    return result
+    # return 'return from hello_get function in main.py ' + request.url
 
 
 def get_customer(request):
