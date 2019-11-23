@@ -5,7 +5,7 @@ from model import Status
 from model import Item
 firebase = firebase.FirebaseApplication("https://csc207-tli.firebaseio.com/")
 
-invoiceObject = Invoice.Invoice(3)
+invoiceObject = Invoice.Invoice()
 JSONversion = json.dumps(vars(invoiceObject))
 print(JSONversion)
 resultPut = firebase.put('Business Owner','this is where the authID goes', {'Name':'Grace', 'help':'me', 'invoice':JSONversion})
