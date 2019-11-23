@@ -45,7 +45,8 @@ from the website:
 your function's entrypoint must be defined in a Python source file
 at the root of your project named main.py
 """
-import requests
+# import requests
+from flask import request
 
 
 def hello_get(request):
