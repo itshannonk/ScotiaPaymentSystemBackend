@@ -1,11 +1,2 @@
 firebase
 requests
-
-^ what the program writes
-This is supposed to specify dependencies
-Like this?
-myfunction/
-├── main.py
-└── mylocalpackage/
-    ├── __init__.py
-    └── myscript.py
