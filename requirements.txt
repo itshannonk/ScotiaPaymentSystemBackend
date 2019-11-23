@@ -1,2 +1,11 @@
 firebase
 requests
+Pyrebase
+crypto
+firebase-admin
+gcloud
+jws
+python-jwt
+rsa
+setuptools
+sseclient
