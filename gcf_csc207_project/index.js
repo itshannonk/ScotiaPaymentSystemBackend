@@ -4,5 +4,5 @@
 * @param {Object} res Cloud Function response context.
 */
 exports.helloGET = (req, res) => {
-  res.send('Hello from Cloud Functions and Cloud Source Repositories');
+  res.send('This is going to work >:)');
 };
