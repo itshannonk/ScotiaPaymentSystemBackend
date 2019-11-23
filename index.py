@@ -26,7 +26,7 @@ if __name__ == "__main__":
 """
 
 
-def hello_http(request):
+def hello_get(request):
     """ HTTP Cloud Function
     Arg: request (flask.Request)
     Res: arg(s) for flask.make_response

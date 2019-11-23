@@ -25,6 +25,8 @@
 # from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 
 # create user, get user, get invoice, pay invoice, confirm payment,
+
+"""
 from firebase import firebase
 firebase = firebase.FirebaseApplication("https://csc207-tli.firebaseio.com/")
 data = {
@@ -37,3 +39,29 @@ data = {
 
 result = firebase.post("/Business Owner/", data)
 print(result)
+"""
+"""
+from the website:
+your function's entrypoint must be defined in a Python source file
+at the root of your project named main.py
+"""
+# import requests
+from flask import request
+
+
+def hello_get(request):
+    """HTTP Cloud Function.
+    Args:
+        request (flask.Request): The request object.
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
+    Returns:
+        The response text, or any set of values that can be turned into a
+        Response object using `make_response`
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
+    """
+    return 'return from hello_get function in main.py ' + request.url_root
+
+
+def get_customer(request):
+    r = request.get("https://us-central1-csc207-tli.cloudfunctions.net/testing")
+
