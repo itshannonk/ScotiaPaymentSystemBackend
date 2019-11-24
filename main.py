@@ -103,6 +103,11 @@ def hello_get(request: Request):
     # return 'return from hello_get function in main.py ' + request.url
 
 
+def get_user_by_id(request: Request):
+    """ Retrieve a single user's information based on its unique id. """
+    pass
+
+
 # TRYING TO RUN A LOCAL SERVER USING FLASK
 
 
