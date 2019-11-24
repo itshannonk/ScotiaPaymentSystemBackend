@@ -162,7 +162,7 @@ def login_page_get(request: Request):
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
     from firebase import firebase
-
+    return request.args
     user = auth.sign_in_with_email_and_password(request.args["email"], request.args["address"])
     firebase = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
     print(user["localId"])
