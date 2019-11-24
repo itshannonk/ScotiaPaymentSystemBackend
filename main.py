@@ -156,7 +156,7 @@ def login_page_get(request: Request):
 
     auth = firebase.auth()
     from firebase import firebase
-    user = auth.sign_in_with_email_and_password("email@gmail.com", "password")
+    user = auth.sign_in_with_email_and_password(request["email"], request["password"])
     firebase = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
     print(user["localId"])
     try:
