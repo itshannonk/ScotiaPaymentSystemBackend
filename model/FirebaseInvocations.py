@@ -47,14 +47,11 @@ def get_login_name(userID):
 def get_list_of_invoice_ids(userID):
     """
     :param userID: the userId
-    :return: a string of invoiceIDs under the userID, where it is separated by commas and the last number will be
-    the total number of invoices
+    :return: a string of invoiceIDs under the userID, where it is separated by commas
     """
     listOfInvoiceIDs = ""
     userDATA = DATABASE.get('/Business Owner', userID)
     inventorydb = userDATA.get("Invoices")
-    totalInvoices = 0
     for key in inventorydb:
-        listOfInvoiceIDs+=key + ','
-        totalInvoices += 1
-    return listOfInvoiceIDs + str(totalInvoices)
+        listOfInvoiceIDs += key + ','
+    return listOfInvoiceIDs

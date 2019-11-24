@@ -11,11 +11,11 @@ DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
 
 
+listOfInvoiceIDs = ""
 userDATA = DATABASE.get('/Business Owner', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
-print(userDATA)
 inventorydb = userDATA.get("Invoices")
 totalInvoices = 0
 for key in inventorydb:
-    print(key)
-    print(inventorydb[key])
+    listOfInvoiceIDs += key + ','
     totalInvoices += 1
+print(listOfInvoiceIDs + str(totalInvoices))
