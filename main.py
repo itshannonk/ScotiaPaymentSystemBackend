@@ -64,7 +64,7 @@ def hello_get(request: Request):
     """
     result = DataRetrieval.get_pls_work()
     # return result
-    return "Data: " + request.data
+    return request.data
     # return 'return from hello_get function in main.py ' + request.url
 
 
