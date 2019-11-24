@@ -85,6 +85,7 @@ def login_page_get(request: Request):
     #except:
         #return False
 
+
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
     """HTTP Cloud Function.
@@ -112,8 +113,6 @@ def get_user_by_id(request: Request):
 
 
 # TRYING TO RUN A LOCAL SERVER USING FLASK
-
-
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
