@@ -98,6 +98,11 @@ def get_display_name(request: Request):
     userID = request.args['userID']
     return FirebaseInvocations.get_login_name(userID)
 
+@app.route('/get_list_of_invoice_ids', methods=['GET'])
+def get_list_of_invoice_ids(request: Request):
+    """ Retrieve a single user's information based on its unique id. """
+    userID = request.args['userID']
+    return FirebaseInvocations.get_list_of_invoice_ids(userID)
 
 @app.route('/get_user_by_id', methods=['GET'])
 def get_name(request: Request):

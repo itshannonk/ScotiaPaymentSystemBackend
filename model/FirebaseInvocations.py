@@ -43,3 +43,18 @@ def get_login_name(userID):
             return userDATA.get("Name", None)
     except:
         return ""
+
+def get_list_of_invoice_ids(userID):
+    """
+    :param userID: the userId
+    :return: a string of invoiceIDs under the userID, where it is separated by commas and the last number will be
+    the total number of invoices
+    """
+    listOfInvoiceIDs = ""
+    userDATA = DATABASE.get('/Business Owner', userID)
+    inventorydb = userDATA.get("Invoices")
+    totalInvoices = 0
+    for key in inventorydb:
+        listOfInvoiceIDs+=key + ','
+        totalInvoices += 1
+    return listOfInvoiceIDs + totalInvoices
