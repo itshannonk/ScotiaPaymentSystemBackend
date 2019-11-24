@@ -61,7 +61,8 @@ def hello_get(request: Request):
         <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
     """
     result = DataRetrieval.get_pls_work()
-    return "Data: " + request.data + "\nText: " + request.body.text
+    return result
+    # return "Data: " + request.data + "\nText: " + request.body.text
     # return 'return from hello_get function in main.py ' + request.url
 
 
