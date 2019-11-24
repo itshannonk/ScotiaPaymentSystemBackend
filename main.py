@@ -158,10 +158,10 @@ def login_page_get(request: Request):
         "measurementId": "G-VQCPWR41LV"
     }
     firebase = pyrebase.initialize_app(config)
-
     auth = firebase.auth()
     from firebase import firebase
-    user = auth.sign_in_with_email_and_password(request["email"], request["password"])
+
+    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("address"))
     firebase = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
     print(user["localId"])
     try:
