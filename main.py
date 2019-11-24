@@ -167,16 +167,16 @@ def login_page_get(request: Request):
     print(user["localId"])
     try:
         if (firebase.get('/Business Owner', user["localId"]) != None):
-            return "Business Owner"
+            return "Business Owner"+","+user["localId"]
     except:
         pass
     try:
         if (firebase.get('/CocaCola', user["localId"]) != None):
-            return "CocaCola"
+            return "CocaCola"+","+user["localId"]
     except:
         pass
     try:
         if (firebase.get('/Truck Driver', user["localId"]) != None):
-            return "Truck Driver"
+            return "Truck Driver"+","+user["localId"]
     except:
-        return ""
+        return ","
