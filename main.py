@@ -51,8 +51,8 @@ from model import DataRetrieval
 app = Flask(__name__)
 
 
-@app.route('/shannons-testing-functionCOPY/<info>', methods=['GET'])
-def hello_get(request: Request, info):
+# @app.route('/shannons-testing-functionCOPY/<info>', methods=['GET'])
+def hello_get(request: Request):
     """HTTP Cloud Function.
     Args:
         request (flask.Request): The request object.
@@ -64,8 +64,8 @@ def hello_get(request: Request, info):
     """
     result = DataRetrieval.get_pls_work()
     # return result
-    # return request.data
-    return info
+    return request.data
+    # return info
     # return 'return from hello_get function in main.py ' + request.url
 
 
