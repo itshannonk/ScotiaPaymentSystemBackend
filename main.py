@@ -50,11 +50,11 @@ at the root of your project named main.py
 # import requests
 from flask import Request, Flask
 from model import DataRetrieval, FirebaseInvocations
-
 app = Flask(__name__)
 @app.route('/login_page_get', methods=['GET'])
 def login_page_get(request: Request):
     """HTTP Cloud Function.
+        This deals check the authentication of the user and also the retrieval of the userID
     Args:
         request (flask.Request): The request object.
         <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
@@ -74,17 +74,39 @@ def login_page_get(request: Request):
         "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
         "measurementId": "G-VQCPWR41LV"
     }
-    return True
-    #firebase = pyrebase.initialize_app(config)
+    firebase = pyrebase.initialize_app(config)
+    auth = firebase.auth()
+    from firebase import firebase
+    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("password"))
+    firebase = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
+    try:
+        if (firebase.get('/Business Owner', user["localId"]) != None):
+            return "Business Owner"+","+user["localId"]
+    except:
+        pass
+    try:
+        if (firebase.get('/CocaCola', user["localId"]) != None):
+            return "CocaCola"+","+user["localId"]
+    except:
+        pass
+    try:
+        if (firebase.get('/Truck Driver', user["localId"]) != None):
+            return "Truck Driver"+","+user["localId"]
+    except:
+        return ","
+@app.route('/get_display_name', methods=['GET'])
+def get_display_name(request: Request):
+    """ Retrieve a single user's information based on its unique id. """
+    userID = request.args['userID']
+    return FirebaseInvocations.get_login_name(userID)
 
-    #auth = firebase.auth()
 
-    #try:
-        #user = auth.sign_in_with_email_and_password(request.args["email"], request.args["password"])
-        #return True
-    #except:
-        #return False
-
+@app.route('/get_user_by_id', methods=['GET'])
+def get_name(request: Request):
+    """ Retrieve a single user's information based on its unique id. """
+    user_type = request.args['usertype']
+    user_id = request.args['userid']
+    return FirebaseInvocations.get_user_data(user_type, user_id)
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
@@ -136,47 +158,3 @@ def local_testing(request: Request):
 # def get_customer(request):
 #     r = request.get("https://us-central1-csc207-tli.cloudfunctions.net/testing")
 
-app = Flask(__name__)
-@app.route('/login_page_get', methods=['GET'])
-def login_page_get(request: Request):
-    """HTTP Cloud Function.
-    Args:
-        request (flask.Request): The request object.
-        <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
-    Returns:
-        The response text, or any set of values that can be turned into a
-        Response object using `make_response`
-        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
-    """
-
-    config = {
-        "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
-        "authDomain": "csc207-tli.firebaseapp.com",
-        "databaseURL": "https://csc207-tli.firebaseio.com",
-        "projectId": "csc207-tli",
-        "storageBucket": "csc207-tli.appspot.com",
-        "messagingSenderId": "707734809591",
-        "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
-        "measurementId": "G-VQCPWR41LV"
-    }
-    firebase = pyrebase.initialize_app(config)
-    auth = firebase.auth()
-    from firebase import firebase
-    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("password"))
-    firebase = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
-    print(user["localId"])
-    try:
-        if (firebase.get('/Business Owner', user["localId"]) != None):
-            return "Business Owner"+","+user["localId"]
-    except:
-        pass
-    try:
-        if (firebase.get('/CocaCola', user["localId"]) != None):
-            return "CocaCola"+","+user["localId"]
-    except:
-        pass
-    try:
-        if (firebase.get('/Truck Driver', user["localId"]) != None):
-            return "Truck Driver"+","+user["localId"]
-    except:
-        return ","
