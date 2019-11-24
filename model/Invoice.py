@@ -1,5 +1,13 @@
-from model import Status, Item
+from model.Status import Status
+
+from model.Item import Item
+
 from typing import List
+
+"""
+This is the Invoice of a Customer
+It contains a list of Items and the Status of the delivery
+"""
 
 
 class Invoice:
@@ -14,3 +22,10 @@ class Invoice:
         self.status = status
         self.items = items
 
+    def getinvoice(self):
+        return {
+            "ID": self.id,
+            "Total Price": self.total_price,
+            "Status": self.status,
+            "Items": self.items
+        }
