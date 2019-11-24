@@ -74,15 +74,16 @@ def login_page_get(request: Request):
         "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
         "measurementId": "G-VQCPWR41LV"
     }
-    firebase = pyrebase.initialize_app(config)
+    return True
+    #firebase = pyrebase.initialize_app(config)
 
-    auth = firebase.auth()
+    #auth = firebase.auth()
 
-    try:
-        user = auth.sign_in_with_email_and_password(request.args["email"], request.args["password"])
-        return True
-    except:
-        return False
+    #try:
+        #user = auth.sign_in_with_email_and_password(request.args["email"], request.args["password"])
+        #return True
+    #except:
+        #return False
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
