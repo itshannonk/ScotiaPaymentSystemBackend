@@ -57,4 +57,4 @@ def get_list_of_invoice_ids(userID):
     for key in inventorydb:
         listOfInvoiceIDs+=key + ','
         totalInvoices += 1
-    return listOfInvoiceIDs + totalInvoices
+    return listOfInvoiceIDs + str(totalInvoices)
