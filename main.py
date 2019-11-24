@@ -106,10 +106,9 @@ def hello_get(request: Request):
 @app.route('/get_user_by_id', methods=['GET'])
 def get_user_by_id(request: Request):
     """ Retrieve a single user's information based on its unique id. """
-    # user_type = request.args['usertype']
-    # user_id = request.args['userid']
-    # return FirebaseInvocations.get_user_data(user_type, user_id)
-    return 'hey'
+    user_type = request.args['usertype']
+    user_id = request.args['userid']
+    return FirebaseInvocations.get_user_data(user_type, user_id)
 
 
 # TRYING TO RUN A LOCAL SERVER USING FLASK
