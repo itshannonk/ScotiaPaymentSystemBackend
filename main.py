@@ -49,7 +49,7 @@ at the root of your project named main.py
 """
 # import requests
 from flask import Request, Flask
-from model import DataRetrieval
+from model import DataRetrieval, FirebaseInvocations
 
 app = Flask(__name__)
 @app.route('/login_page_get', methods=['GET'])
@@ -105,7 +105,9 @@ def hello_get(request: Request):
 
 def get_user_by_id(request: Request):
     """ Retrieve a single user's information based on its unique id. """
-    pass
+    user_type = request.args['usertype']
+    user_id = request.args['userid']
+    return FirebaseInvocations.get_user_data(user_type, user_id)
 
 
 # TRYING TO RUN A LOCAL SERVER USING FLASK
