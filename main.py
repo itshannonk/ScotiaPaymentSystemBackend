@@ -48,8 +48,10 @@ at the root of your project named main.py
 # import requests
 from flask import Request, Flask
 from model import DataRetrieval
+app = Flask(__name__)
 
 
+@app.route('shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
     """HTTP Cloud Function.
     Args:
@@ -67,11 +69,26 @@ def hello_get(request: Request):
 
 
 # TRYING TO RUN A LOCAL SERVER USING FLASK
-app = Flask(__name__)
+
 
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+
+@app.route('/testing')
+def local_testing(request: Request):
+    """HTTP Cloud Function.
+    Args:
+        request (flask.Request): The request object.
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
+    Returns:
+        The response text, or any set of values that can be turned into a
+        Response object using `make_response`
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
+    """
+    result = DataRetrieval.get_pls_work()
+    return result
 
 
 # def get_customer(request):
