@@ -1,3 +1,4 @@
+import pyrebase
 # """
 # from the website:
 # your function's entrypoint must be defined in a Python source file
@@ -51,6 +52,7 @@ from model import DataRetrieval
 app = Flask(__name__)
 
 
+
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
     """HTTP Cloud Function.
@@ -94,5 +96,40 @@ def local_testing(request: Request):
 
 # def get_customer(request):
 #     r = request.get("https://us-central1-csc207-tli.cloudfunctions.net/testing")
+
+app = Flask(__name__)
+
+
+@app.route('/shannons-testing-functionCOPY', methods=['GET'])
+def loginPage(request: Request):
+    """HTTP Cloud Function.
+    Args:
+        request (flask.Request): The request object.
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
+    Returns:
+        The response text, or any set of values that can be turned into a
+        Response object using `make_response`
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
+    """
+
+    config = {
+        "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
+        "authDomain": "csc207-tli.firebaseapp.com",
+        "databaseURL": "https://csc207-tli.firebaseio.com",
+        "projectId": "csc207-tli",
+        "storageBucket": "csc207-tli.appspot.com",
+        "messagingSenderId": "707734809591",
+        "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
+        "measurementId": "G-VQCPWR41LV"
+    }
+    firebase = pyrebase.initialize_app(config)
+
+    auth = firebase.auth()
+
+    try:
+        user = auth.sign_in_with_email_and_password(request.args["email"], request.args["password"])
+        return True
+    except:
+        return False
 
 

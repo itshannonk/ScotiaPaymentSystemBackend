@@ -1,6 +1,7 @@
 flask
 firebase
 requests
+request
 Pyrebase
 crypto
 firebase-admin
