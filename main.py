@@ -158,7 +158,6 @@ def login_page_get(request: Request):
 
     try:
         user = auth.sign_in_with_email_and_password(request.args["email"], request.args["password"])
-        token = user['idToken']
-        return token.uID
+        return "true"
     except:
-        return False
+        return "false"
