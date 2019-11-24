@@ -103,6 +103,7 @@ def hello_get(request: Request):
     # return 'return from hello_get function in main.py ' + request.url
 
 
+@app.route('/get_user_by_id', methods=['GET'])
 def get_user_by_id(request: Request):
     """ Retrieve a single user's information based on its unique id. """
     user_type = request.args['usertype']
