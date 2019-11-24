@@ -32,7 +32,8 @@ def loginPage(request: Request):
 
     try:
         user = auth.sign_in_with_email_and_password(request.args["email"], request.args["password"])
-        return True
+        token = user['idToken']
+        return token.uID
     except:
         return False
 
