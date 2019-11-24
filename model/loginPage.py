@@ -1,5 +1,5 @@
 from flask import *
-def loginPage(email, password):
+def getLoginPage(email, password):
     # returns true if the person is authenticated otherwise it returns false
     import pyrebase
 
@@ -16,10 +16,10 @@ def loginPage(email, password):
     }
 
     firebase = pyrebase.initialize_app(config)
-
     auth = firebase.auth()
     try:
        user = auth.sign_in_with_email_and_password(email, password)
-       return True
+       token = user['idToken']
+       return token
     except:
-        return False
+        return ""
