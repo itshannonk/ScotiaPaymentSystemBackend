@@ -101,7 +101,7 @@ app = Flask(__name__)
 
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
-def loginPage(request: Request):
+def login_page_get(request: Request):
     """HTTP Cloud Function.
     Args:
         request (flask.Request): The request object.
