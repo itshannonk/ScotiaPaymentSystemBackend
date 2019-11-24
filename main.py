@@ -155,9 +155,22 @@ def login_page_get(request: Request):
     firebase = pyrebase.initialize_app(config)
 
     auth = firebase.auth()
-
+    from firebase import firebase
+    user = auth.sign_in_with_email_and_password("email@gmail.com", "password")
+    firebase = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
+    print(user["localId"])
     try:
-        user = auth.sign_in_with_email_and_password(request.args["email"], request.args["password"])
-        return "true"+"," + user["localId"]
+        if (firebase.get('/Business Owner', user["localId"]) != None):
+            return "Business Owner"
     except:
-        return "false"
+        pass
+    try:
+        if (firebase.get('/CocaCola', user["localId"]) != None):
+            return "CocaCola"
+    except:
+        pass
+    try:
+        if (firebase.get('/Truck Driver', user["localId"]) != None):
+            return "Truck Driver"
+    except:
+        return ""
