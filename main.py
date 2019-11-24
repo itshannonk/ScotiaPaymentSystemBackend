@@ -49,7 +49,7 @@ at the root of your project named main.py
 """
 # import requests
 from flask import Request, Flask
-from model import DataRetrieval
+from model import DataRetrieval, FirebaseInvocations
 
 app = Flask(__name__)
 @app.route('/login_page_get', methods=['GET'])
@@ -85,6 +85,7 @@ def login_page_get(request: Request):
     #except:
         #return False
 
+
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
     """HTTP Cloud Function.
@@ -103,14 +104,15 @@ def hello_get(request: Request):
     # return 'return from hello_get function in main.py ' + request.url
 
 
+@app.route('/get_user_by_id', methods=['GET'])
 def get_user_by_id(request: Request):
     """ Retrieve a single user's information based on its unique id. """
-    pass
+    user_type = request.args['usertype']
+    user_id = request.args['userid']
+    return FirebaseInvocations.get_user_data(user_type, user_id)
 
 
 # TRYING TO RUN A LOCAL SERVER USING FLASK
-
-
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
