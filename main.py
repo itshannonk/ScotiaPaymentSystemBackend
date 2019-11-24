@@ -100,7 +100,7 @@ def local_testing(request: Request):
 app = Flask(__name__)
 
 
-@app.route('/shannons-testing-functionCOPY', methods=['GET'])
+@app.route('/login_page_get', methods=['GET'])
 def login_page_get(request: Request):
     """HTTP Cloud Function.
     Args:
