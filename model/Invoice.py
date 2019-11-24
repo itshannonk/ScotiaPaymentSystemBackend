@@ -14,13 +14,13 @@ class Invoice:
     id: int
     total_price: float
     status: Status
-    items: List[Item]
+    items: List[Item.Item]
 
-    def __init__(self, id: int, total_price: float, status: Status, items: List[Item]):
-        self.id = id
-        self.total_price = total_price
-        self.status = status
-        self.items = items
+    def __init__(self):
+        self.id = 3
+        self.total_price = 12.99
+        #self.status = Status.Status(True, True, False)
+        #self.items = [Item.Item("cocacola", 12.33, 2), Item.Item("cocacola", 12.33, 2)]
 
     def getinvoice(self):
         return {

@@ -46,10 +46,13 @@ your function's entrypoint must be defined in a Python source file
 at the root of your project named main.py
 """
 # import requests
-from flask import request
+from flask import Request, Flask
+from model import DataRetrieval
+app = Flask(__name__)
 
 
-def hello_get(request):
+@app.route('/shannons-testing-functionCOPY', methods=['GET'])
+def hello_get(request: Request):
     """HTTP Cloud Function.
     Args:
         request (flask.Request): The request object.
@@ -59,10 +62,37 @@ def hello_get(request):
         Response object using `make_response`
         <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
     """
-    return 'return from hello_get function in main.py ' + request.url_root
+    result = DataRetrieval.get_pls_work()
+    # return result
+    return request.args
+    # return info
+    # return 'return from hello_get function in main.py ' + request.url
 
 
-def get_customer(request):
-    r = request.get("https://us-central1-csc207-tli.cloudfunctions.net/testing")
+# TRYING TO RUN A LOCAL SERVER USING FLASK
+
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+
+@app.route('/testing')
+def local_testing(request: Request):
+    """HTTP Cloud Function.
+    Args:
+        request (flask.Request): The request object.
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
+    Returns:
+        The response text, or any set of values that can be turned into a
+        Response object using `make_response`
+        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
+    """
+    result = DataRetrieval.get_pls_work()
+    return result
+
+
+# def get_customer(request):
+#     r = request.get("https://us-central1-csc207-tli.cloudfunctions.net/testing")
 
 
