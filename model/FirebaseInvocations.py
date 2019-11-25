@@ -6,7 +6,8 @@ from firebase import firebase
 import json
 import pyrebase
 # Initialize database
-DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
+DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
+                                        None)
 
 
 def get_current_user(email: str, password: str):
@@ -123,7 +124,8 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                      })
 
 
-def set_invoice_status(user_id: str, invoice_id: str, status_type: str, new_value: bool):
+def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
+                       new_value: bool):
     """ Change invoice_id's status based on status_type and new_value.
 
     :param user_id: Unique id of the user to whom the invoice belongs.
