@@ -5,8 +5,7 @@ from flask import Request, Flask
 from firebase import firebase
 import json
 # Initialize database
-DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
-                                        None)
+DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
 
 
 def get_user_data(user_type: str, user_id: str):
@@ -65,3 +64,28 @@ def get_list_of_invoice_ids(userID):
                 pass
         listOfInvoiceIDs += str(key) + ','
     return listOfInvoiceIDs[:-1]
+
+
+def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
+    if role == "a Business Owner":
+        DATABASE.put("Business Owner", userID,
+                     {
+                         "Address": address,
+                         "Email": email,
+                         "Name": name,
+                         "Password": password
+                     })
+    elif role == "a Truck Driver":
+        DATABASE.put("Truck Driver", userID,
+                     {
+                         "Email": email,
+                         "Name": name,
+                         "Password": password
+                     })
+    else:
+        DATABASE.put(role, userID,
+                     {
+                         "Email": email,
+                         "Name": name,
+                         "Password": password
+                     })

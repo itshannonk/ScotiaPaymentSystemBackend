@@ -31,8 +31,8 @@ class Invoice:
 
         #self.status = Status(True, True, False)
         #self.items = [Item("cocacola", 12.33, 2), Item("cocacola", 12.33, 2)]
-    def change_delivered(self, delievered):
-        self.delivered = delievered
+    def change_delivered(self, delivered):
+        self.delivered = delivered
         return self.delivered
     # must input an item
     def input_item(self, item):

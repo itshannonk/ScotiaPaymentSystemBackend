@@ -92,6 +92,31 @@ def login_page_get(request: Request):
             return "Truck Driver"+","+user["localId"]
     except:
         return ","
+
+
+@app.route('/create_user', methods=['PUT'])
+def create_user(request: Request):
+
+    config = {
+        "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
+        "authDomain": "csc207-tli.firebaseapp.com",
+        "databaseURL": "https://csc207-tli.firebaseio.com",
+        "projectId": "csc207-tli",
+        "storageBucket": "csc207-tli.appspot.com",
+        "messagingSenderId": "707734809591",
+        "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
+        "measurementId": "G-VQCPWR41LV"
+    }
+
+    firebase = pyrebase.initialize_app(config)
+    auth = firebase.auth()
+    auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
+    print(auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password")))
+    userID = auth.getInstance().getCurrentUser().getUid()
+    FirebaseInvocations.create_user(request.args.get("address"), request.args.get("email"), request.args.get("name"),
+                                    request.args.get("password"), request.args.get("role"), userID)
+    return
+
 @app.route('/get_display_name', methods=['GET'])
 def get_display_name(request: Request):
     """ Retrieve a single user's information based on its unique id. """
