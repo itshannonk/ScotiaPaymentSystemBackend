@@ -76,7 +76,9 @@ def login_page_get(request: Request):
     }
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
-    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("password"))
+    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("email"))
+    # TODO: change the statement above to the commented one below:
+    # user = FirebaseInvocations.get_current_user(request.args.get("email"), request.args.get("email"))
     try:
         if (FirebaseInvocations.get_user_data('Business Owner', user["localId"]) != None):
             return "Business Owner"+","+user["localId"]
@@ -92,11 +94,14 @@ def login_page_get(request: Request):
             return "Truck Driver"+","+user["localId"]
     except:
         return ","
+
+
 @app.route('/get_display_name', methods=['GET'])
 def get_display_name(request: Request):
     """ Retrieve a single user's information based on its unique id. """
     userID = request.args.get("userID")
     return FirebaseInvocations.get_login_name(userID)
+
 
 @app.route('/get_list_of_invoice_ids', methods=['GET'])
 def get_list_of_invoice_ids(request: Request):
@@ -104,12 +109,14 @@ def get_list_of_invoice_ids(request: Request):
     userID = request.args['userID']
     return FirebaseInvocations.get_list_of_invoice_ids(userID)
 
+
 @app.route('/get_user_by_id', methods=['GET'])
 def get_name(request: Request):
     """ Retrieve a single user's information based on its unique id. """
     user_type = request.args['usertype']
     user_id = request.args['userid']
     return FirebaseInvocations.get_user_data(user_type, user_id)
+
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
