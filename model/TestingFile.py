@@ -10,31 +10,31 @@ JSONversion = json.dumps(vars(invoiceObject))
 DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
 
-
-
 listOfInvoiceIDs = ""
-userDATA = DATABASE.get('/Business Owner', None)
-userDATA = userDATA.get('FEkg7hBAVxPgbwHHp2VmNwVCCwK2', None)
+userDATA = DATABASE.get('/Business Owner', 'YwF7HkeUCkRUU6V00lkh2d0p5512')
+print(userDATA)
 userDATA = userDATA.get('Invoices', None)
+print(userDATA)
 #print(userDATA)
 
+#print(userDATA)
 
-userDATA = DATABASE.get('/Business Owner', '3T8yP4J8IaaLKV0cueQjsSK07aX2')
-inventorydb = userDATA.get("Invoices")
-print(inventorydb)
+#print(inventorydb)
 listOfInvoiceIDs = ""
-for key in inventorydb:
-    print(key)
+for key in userDATA:
+    #print(key)
     # try and except block testing if there are multiple invoices
     try:
+        #print(key)
         int(key)
     except:
         # testing if there is only one invoice
         try:
-            print(json.loads(inventorydb).get("id"))
+            #print(json.loads(inventorydb).get("id"))
             break
         except:
             pass
             # print("no")
     listOfInvoiceIDs += key + ','
-print(listOfInvoiceIDs[:-2])
+    #print(listOfInvoiceIDs)
+#print(listOfInvoiceIDs[:-1])

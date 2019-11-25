@@ -64,4 +64,4 @@ def get_list_of_invoice_ids(userID):
             except:
                 pass
         listOfInvoiceIDs += str(key) + ','
-    return listOfInvoiceIDs[:-2]
+    return listOfInvoiceIDs[:-1]
