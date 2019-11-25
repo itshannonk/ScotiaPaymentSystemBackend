@@ -114,6 +114,6 @@ def set_invoice_status(user_id: str, invoice_id: str, status_type: str, new_valu
     :param new_value: The new status' value (either True or False).
     :return:
     """
-    invoice_path = '/Invoices/' + user_id + '/' + invoice_id + 'status'
+    invoice_path = '/Invoices/' + user_id + '/' + invoice_id + '/status'
     # firebase.put('/Invoices/FEkg7hBAVxPgbwHHp2VmNwVCCwK2/invoice 1/status', 'issued', False)
     DATABASE.put(invoice_path, status_type, new_value)
