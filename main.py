@@ -76,7 +76,7 @@ def login_page_get(request: Request):
     }
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
-    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("email"))
+    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("password"))
     # TODO: change the statement above to the commented one below:
     # user = FirebaseInvocations.get_current_user(request.args.get("email"), request.args.get("email"))
     try:
