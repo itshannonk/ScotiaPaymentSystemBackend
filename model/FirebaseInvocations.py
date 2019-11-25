@@ -6,7 +6,8 @@ from firebase import firebase
 import json
 import pyrebase
 # Initialize database
-DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/', None)
+DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
+                                        None)
 
 
 def get_current_user(email: str, password: str):
@@ -71,20 +72,31 @@ def get_list_of_invoice_ids(userID):
     :return: a string of invoiceIDs under the userID, where it is separated by commas
     """
     listOfInvoiceIDs = ""
-    userDATA = DATABASE.get('/Business Owner', userID)
-    inventorydb = userDATA.get("Invoices")
-    for key in inventorydb:
-        # try and except block testing if there are multiple invoices
-        try:
-            int(key)
-        except:
-            # testing if there is only one invoice
-            try:
-                return json.loads(inventorydb).get("id")
-            except:
-                pass
-        listOfInvoiceIDs += str(key) + ','
-    return listOfInvoiceIDs[:-1]
+    try:
+        inventorydb = DATABASE.get('Invoices', userID)
+        for key in inventorydb:
+            listOfInvoiceIDs += str(key) + ','
+        return listOfInvoiceIDs[:-1]
+    except:
+        return ""
+
+def get_invoice_information(userID, invoiceID):
+    """
+    :param userID: the userId
+    :return: "delivered, issued, paid, price"
+    """
+    invoice_information = ""
+    try:
+        inventorydb = DATABASE.get('Invoices', userID)
+        invoice_information += inventorydb.get(invoiceID, "delivered")
+        invoice_information += inventorydb.get(invoiceID, "issued")
+        invoice_information += inventorydb.get(invoiceID, "paid")
+        invoice_information += inventorydb.get("total price", None)
+        for key in inventorydb:
+            invoice_information += str(key) + ','
+        return invoice_information[:-1]
+    except:
+        return ""
 
 
 def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
@@ -113,15 +125,19 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                      })
 
 
-def set_invoice_status(user_id: str, invoice_id: str, status_type: str, new_value: bool):
+def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
+                       new_value: bool) -> bool:
     """ Change invoice_id's status based on status_type and new_value.
 
     :param user_id: Unique id of the user to whom the invoice belongs.
     :param invoice_id: Unique id of the invoice to be changed.
     :param status_type: The status that will be changed.
     :param new_value: The new status' value (either True or False).
-    :return:
+    :return: Return True iff the invoice path is in the database.
     """
     invoice_path = '/Invoices/' + user_id + '/' + invoice_id + '/status'
+    if DATABASE.get(invoice_path, status_type):
+        DATABASE.put(invoice_path, status_type, new_value)
+        return True
+    return False
     # firebase.put('/Invoices/FEkg7hBAVxPgbwHHp2VmNwVCCwK2/invoice 1/status', 'issued', False)
-    DATABASE.put(invoice_path, status_type, new_value)

@@ -132,6 +132,13 @@ def get_list_of_invoice_ids(request: Request):
     userID = request.args['userID']
     return FirebaseInvocations.get_list_of_invoice_ids(userID)
 
+@app.route('get_invoice_information', methods=['GET'])
+def get_invoice_information(request: Request):
+    """ Retrieve a single user's information based on its unique id. """
+    userID = request.args['userID']
+    invoiceID = request.args['invoiceID']
+    return FirebaseInvocations.get_invoice_information(userID, invoiceID)
+
 
 @app.route('/get_user_by_id', methods=['GET'])
 def get_name(request: Request):
@@ -143,11 +150,14 @@ def get_name(request: Request):
 
 @app.route('/set_invoice_status', methods=['SET'])
 def set_invoice_status(request: Request):
-    """ Change an invoices status. """
+    """ Change an invoice's status. """
     user_id = request.args['userid']
     invoice_id = request.args['invoiceid']
     status_type = request.args['statustype']
-    new_value = bool(request.args['newvalue'])
+    if request.args['newvalue'].lower() == 'true':
+        new_value = True
+    else:
+        new_value = False
     FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
                                            new_value)
     return 'New values was recorded'
