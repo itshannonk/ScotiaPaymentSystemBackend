@@ -19,7 +19,7 @@ userDATA = userDATA.get('Invoices', None)
 #print(userDATA)
 
 
-userDATA = DATABASE.get('/Business Owner', 'FEkg7hBAVxPgbwHHp2VmNwVCCwK2')
+userDATA = DATABASE.get('/Business Owner', '3T8yP4J8IaaLKV0cueQjsSK07aX2')
 inventorydb = userDATA.get("Invoices")
 print(inventorydb)
 listOfInvoiceIDs = ""
@@ -32,6 +32,7 @@ for key in inventorydb:
         # testing if there is only one invoice
         try:
             print(json.loads(inventorydb).get("id"))
+            break
         except:
             pass
             # print("no")
