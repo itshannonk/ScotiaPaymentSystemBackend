@@ -71,20 +71,13 @@ def get_list_of_invoice_ids(userID):
     :return: a string of invoiceIDs under the userID, where it is separated by commas
     """
     listOfInvoiceIDs = ""
-    userDATA = DATABASE.get('/Business Owner', userID)
-    inventorydb = userDATA.get("Invoices")
-    for key in inventorydb:
-        # try and except block testing if there are multiple invoices
-        try:
-            int(key)
-        except:
-            # testing if there is only one invoice
-            try:
-                return json.loads(inventorydb).get("id")
-            except:
-                pass
-        listOfInvoiceIDs += str(key) + ','
-    return listOfInvoiceIDs[:-1]
+    try:
+        inventorydb = DATABASE.get('Invoices', userID)
+        for key in inventorydb:
+            listOfInvoiceIDs += str(key) + ','
+        return listOfInvoiceIDs[:-1]
+    except:
+        return ""
 
 
 def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
