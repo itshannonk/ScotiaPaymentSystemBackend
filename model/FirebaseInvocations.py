@@ -63,5 +63,5 @@ def get_list_of_invoice_ids(userID):
                 return json.loads(inventorydb).get("id")
             except:
                 pass
-        listOfInvoiceIDs += key + ','
+        listOfInvoiceIDs += str(key) + ','
     return listOfInvoiceIDs[:-2]
