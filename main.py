@@ -51,6 +51,7 @@ at the root of your project named main.py
 from flask import Request, Flask
 from model import DataRetrieval, FirebaseInvocations
 app = Flask(__name__)
+
 @app.route('/login_page_get', methods=['GET'])
 def login_page_get(request: Request):
     """HTTP Cloud Function.
@@ -112,9 +113,8 @@ def create_user(request: Request):
 
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
-    auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
-    print(auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password")))
-    userID = auth.getInstance().getCurrentUser().getUid()
+    user = auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
+    userID = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"), request.args.get("email"), request.args.get("name"),
                                     request.args.get("password"), request.args.get("role"), userID)
     return
