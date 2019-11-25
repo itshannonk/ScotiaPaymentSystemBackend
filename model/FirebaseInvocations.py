@@ -125,15 +125,18 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
 
 
 def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
-                       new_value: bool):
+                       new_value: bool) -> bool:
     """ Change invoice_id's status based on status_type and new_value.
 
     :param user_id: Unique id of the user to whom the invoice belongs.
     :param invoice_id: Unique id of the invoice to be changed.
     :param status_type: The status that will be changed.
     :param new_value: The new status' value (either True or False).
-    :return:
+    :return: Return True iff the invoice path is in the database.
     """
     invoice_path = '/Invoices/' + user_id + '/' + invoice_id + '/status'
+    if DATABASE.get(invoice_path, status_type):
+        DATABASE.put(invoice_path, status_type, new_value)
+        return True
+    return False
     # firebase.put('/Invoices/FEkg7hBAVxPgbwHHp2VmNwVCCwK2/invoice 1/status', 'issued', False)
-    DATABASE.put(invoice_path, status_type, new_value)
