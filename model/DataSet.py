@@ -9,5 +9,9 @@ firebase = firebase.FirebaseApplication("https://csc207-tli.firebaseio.com/")
 invoiceObject = Invoice.Invoice()
 JSONversion = json.dumps(invoiceObject.__dict__)
 print(JSONversion)
-resultPut = firebase.put('Business Owner','this is where the authID goes', {'Name':'Grace', 'help':'me', 'invoice':JSONversion})
-print(resultPut)
+resultPut = firebase.put('Business Owner','this is where the authID goes', {'Name':'Grace', 'help':'me', 'Invoice':{0:JSONversion, 1:JSONversion}})
+#this is how you delete something. comment out the line below and see what it in firebase before uncommenting it out
+result = firebase.delete("Business Owner/this is where the authID goes", "Name")
+#this shows how you can update and add more children. Comment out the line below to see it
+newresult = firebase.put("Business Owner","this is where the authID goes/Invoice", {3:JSONversion, 1:"gracececece"})
+print(result)
