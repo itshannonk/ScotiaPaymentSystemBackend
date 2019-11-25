@@ -4,11 +4,16 @@ This module will be used to make calls to the real-time database.
 from flask import Request, Flask
 from firebase import firebase
 import json
+import pyrebase
 # Initialize database
 DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
 
 
+def get_current_user():
+    """ Get the current user's information for authentication purposes.
+    """
+    pass
 def get_user_data(user_type: str, user_id: str):
     """ Get a user's data base on user_type and user_id.
 
