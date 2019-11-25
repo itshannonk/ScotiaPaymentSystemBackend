@@ -13,7 +13,6 @@ DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
 def get_current_user(email: str, password: str):
     """ Get the current user's information for authentication purposes.
     """
-    pass
     config = {
         "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
         "authDomain": "csc207-tli.firebaseapp.com",
@@ -140,4 +139,3 @@ def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
         DATABASE.put(invoice_path, status_type, new_value)
         return True
     return False
-    # firebase.put('/Invoices/FEkg7hBAVxPgbwHHp2VmNwVCCwK2/invoice 1/status', 'issued', False)
