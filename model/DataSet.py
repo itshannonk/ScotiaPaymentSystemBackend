@@ -11,7 +11,7 @@ JSONversion = json.dumps(invoiceObject.__dict__)
 # print(JSONversion)
 # resultPut = firebase.put('Invoices','FEkg7hBAVxPgbwHHp2VmNwVCCwK2', {0:{"price":12.99, "status": "True"}, 1:{"price":12.99, "status": "True"}})
 resultPut = firebase.put('Invoices','FEkg7hBAVxPgbwHHp2VmNwVCCwK2',
-                         {'invoice 1': {
+                         {'invoice1': {
                              'order': {
                                  'item name': 'new item',
                                  'quantity': 'quantity',
@@ -19,7 +19,7 @@ resultPut = firebase.put('Invoices','FEkg7hBAVxPgbwHHp2VmNwVCCwK2',
                              },
                              'total price': 9.99,
                              'status': {
-                                 'issue': True,
+                                 'issued': True,
                                  'paid': False,
                                  'delivered': False
                              }

@@ -77,7 +77,7 @@ def login_page_get(request: Request):
     }
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
-    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("email"))
+    user = auth.sign_in_with_email_and_password(request.args.get("email"), request.args.get("password"))
     # TODO: change the statement above to the commented one below:
     # user = FirebaseInvocations.get_current_user(request.args.get("email"), request.args.get("email"))
     try:
@@ -141,14 +141,16 @@ def get_name(request: Request):
     return FirebaseInvocations.get_user_data(user_type, user_id)
 
 
-@app.route('/set_invoice_status')
+@app.route('/set_invoice_status', methods=['SET'])
 def set_invoice_status(request: Request):
     """ Change an invoices status. """
     user_id = request.args['userid']
     invoice_id = request.args['invoiceid']
     status_type = request.args['statustype']
-    new_value = request.args['newvalue']
-    return request.args
+    new_value = bool(request.args['newvalue'])
+    FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
+                                           new_value)
+    return 'New values was recorded'
 
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
@@ -164,7 +166,7 @@ def hello_get(request: Request):
     """
     result = DataRetrieval.get_pls_work()
     # return result
-    return result
+    return request.args
     # return info
     # return 'return from hello_get function in main.py ' + request.url
 

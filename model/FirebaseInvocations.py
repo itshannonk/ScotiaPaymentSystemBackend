@@ -27,6 +27,7 @@ def get_current_user(email: str, password: str):
     auth = firebase.auth()
     return auth.sign_in_with_email_and_password(email, password)
 
+
 def get_user_data(user_type: str, user_id: str):
     """ Get a user's data base on user_type and user_id.
 
@@ -62,6 +63,7 @@ def get_login_name(userID):
             return userDATA.get("Name", None)
     except:
         return ""
+
 
 def get_list_of_invoice_ids(userID):
     """
@@ -108,3 +110,17 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                          "Name": name,
                          "Password": password
                      })
+
+
+def set_invoice_status(user_id: str, invoice_id: str, status_type: str, new_value: bool):
+    """ Change invoice_id's status based on status_type and new_value.
+
+    :param user_id: Unique id of the user to whom the invoice belongs.
+    :param invoice_id: Unique id of the invoice to be changed.
+    :param status_type: The status that will be changed.
+    :param new_value: The new status' value (either True or False).
+    :return:
+    """
+    invoice_path = '/Invoices/' + user_id + '/' + invoice_id + '/status'
+    # firebase.put('/Invoices/FEkg7hBAVxPgbwHHp2VmNwVCCwK2/invoice 1/status', 'issued', False)
+    DATABASE.put(invoice_path, status_type, new_value)
