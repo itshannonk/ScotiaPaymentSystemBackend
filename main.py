@@ -143,11 +143,14 @@ def get_name(request: Request):
 
 @app.route('/set_invoice_status', methods=['SET'])
 def set_invoice_status(request: Request):
-    """ Change an invoices status. """
+    """ Change an invoice's status. """
     user_id = request.args['userid']
     invoice_id = request.args['invoiceid']
     status_type = request.args['statustype']
-    new_value = bool(request.args['newvalue'])
+    if request.args['newvalue'].lower() == 'true':
+        new_value = True
+    else:
+        new_value = False
     FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
                                            new_value)
     return 'New values was recorded'
