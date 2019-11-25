@@ -98,6 +98,17 @@ def get_invoice_information(userID, invoiceID):
         return ""
 
 
+def get_invoice_json(user_id: str, invoice_id: str):
+    """ Return the invoice with id invoice_id as a json object.
+
+    :param user_id: User's unique id.
+    :param invoice_id: The invoice's unique id.
+    :return: A json object containing the invoice.
+    """
+    invoice_path = '/Invoices/' + user_id
+    return DATABASE.get(invoice_path, invoice_id)
+
+
 def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
     "reached create user firebase"
     if role == "a Business Owner":

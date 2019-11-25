@@ -140,6 +140,13 @@ def get_invoice_information(request: Request):
     return FirebaseInvocations.get_invoice_information(userID, invoiceID)
 
 
+def get_invoice_by_id(request: Request):
+    """ Retrieve an invoice given the user's id and the invoice id. """
+    user_id = request.args['userid']
+    invoice_id = request.args['invoiceid']
+    return FirebaseInvocations.get_invoice_json(user_id, invoice_id)
+
+
 @app.route('/get_user_by_id', methods=['GET'])
 def get_name(request: Request):
     """ Retrieve a single user's information based on its unique id. """
