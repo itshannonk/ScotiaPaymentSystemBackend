@@ -79,6 +79,24 @@ def get_list_of_invoice_ids(userID):
     except:
         return ""
 
+def get_invoice_information(userID, invoiceID):
+    """
+    :param userID: the userId
+    :return: "delivered, issued, paid, price"
+    """
+    invoice_information = ""
+    try:
+        inventorydb = DATABASE.get('Invoices', userID)
+        invoice_information += inventorydb.get(invoiceID, "delivered")
+        invoice_information += inventorydb.get(invoiceID, "issued")
+        invoice_information += inventorydb.get(invoiceID, "paid")
+        invoice_information += inventorydb.get("total price", None)
+        for key in inventorydb:
+            invoice_information += str(key) + ','
+        return invoice_information[:-1]
+    except:
+        return ""
+
 
 def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
     if role == "a Business Owner":
