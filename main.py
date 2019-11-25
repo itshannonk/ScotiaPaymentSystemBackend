@@ -118,6 +118,16 @@ def get_name(request: Request):
     return FirebaseInvocations.get_user_data(user_type, user_id)
 
 
+@app.route('/set_invoice_status')
+def set_invoice_status(request: Request):
+    """ Change an invoices status. """
+    user_id = request.args['userid']
+    invoice_id = request.args['invoiceid']
+    status_type = request.args['statustype']
+    new_value = request.args['newvalue']
+    return request.args
+
+
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
 def hello_get(request: Request):
     """HTTP Cloud Function.
