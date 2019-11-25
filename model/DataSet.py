@@ -19,7 +19,7 @@ resultPut = firebase.put('Invoices','FEkg7hBAVxPgbwHHp2VmNwVCCwK2',
                              },
                              'total price': 9.99,
                              'status': {
-                                 'issue': True,
+                                 'issued': True,
                                  'paid': False,
                                  'delivered': False
                              }
