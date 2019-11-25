@@ -88,6 +88,7 @@ def get_list_of_invoice_ids(userID):
 
 
 def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
+    "reached create user firebase"
     if role == "a Business Owner":
         DATABASE.put("Business Owner", userID,
                      {

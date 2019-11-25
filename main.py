@@ -99,7 +99,7 @@ def login_page_get(request: Request):
 
 @app.route('/create_user', methods=['PUT'])
 def create_user(request: Request):
-
+    print("reached create user main")
     config = {
         "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
         "authDomain": "csc207-tli.firebaseapp.com",
@@ -117,7 +117,7 @@ def create_user(request: Request):
     userID = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"), request.args.get("email"), request.args.get("name"),
                                     request.args.get("password"), request.args.get("role"), userID)
-    return
+    return "returned!"
 
 @app.route('/get_display_name', methods=['GET'])
 def get_display_name(request: Request):
