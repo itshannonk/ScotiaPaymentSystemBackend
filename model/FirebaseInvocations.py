@@ -183,5 +183,21 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'delivered': False
                      }
                  })
+def get_customers():
+    """ Change invoice_id's status based on status_type and new_value.
 
+    :param user_id: Unique id of the user to whom the invoice belongs.
+    :param invoice_id: Unique id of the invoice to be changed.
+    :param status_type: The status that will be changed.
+    :param new_value: The new status' value (either True or False).
+    :return: Return True iff the invoice path is in the database.
+    """
+    listOfCustomerIDs = ""
+    try:
+        inventorydb = DATABASE.get('Business Owner', None)
+        for key in inventorydb:
+            listOfCustomerIDs += str(key) + ','
+        return listOfCustomerIDs[:-1]
+    except:
+        return ""
 
