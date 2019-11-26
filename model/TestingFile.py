@@ -70,18 +70,21 @@ inventorydb = inventorydb.get("invoice1", None)
 inventorydb = inventorydb.get("status", None)
 inventorydb = inventorydb.get("delivered", None)
 
-print(inventorydb)
-inventorydb = inventorydb.get("delievered", None)
-print(inventorydb)
+invoice_information = ""
 try:
     inventorydb = DATABASE.get('Invoices', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
+    print(inventorydb)
+    inventorydb = inventorydb.get("invoice1", None)
+    print(inventorydb)
+    statusdb = inventorydb.get("status", None)
+    print(statusdb)
+    print(statusdb)
+    print(statusdb)
+    invoice_information += statusdb.get("paid", None)
+    invoice_information += statusdb.get("issued", None)
+    invoice_information += statusdb.get("paid", None)
     invoice_information += inventorydb.get("total price", None)
-    invoice_information += inventorydb.get("invoice1", "delivered")
-    invoice_information += inventorydb.get("invoice1", "issued")
-    invoice_information += inventorydb.get("invoice1", "paid")
-    for key in inventorydb:
-        invoice_information += str(key) + ','
     print(invoice_information[:-1])
 except:
-    print("no")
+    print("it doesn't work")
 
