@@ -165,8 +165,9 @@ def set_invoice_status(request: Request):
         new_value = True
     else:
         new_value = False
-    return FirebaseInvocations.set_invoice_status(user_id, invoice_id,
-                                                  status_type, new_value)
+    FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
+                                           new_value)
+    return ''
 
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
