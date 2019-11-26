@@ -96,7 +96,9 @@ def login_page_get(request: Request):
     except:
         return ","
 
-
+@app.route('/get_customers', methods=['GET'])
+def get_customers(request: Request):
+    return FirebaseInvocations.get_customers()
 @app.route('/create_user', methods=['PUT'])
 def create_user(request: Request):
     print("reached create user main")
