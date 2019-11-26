@@ -96,7 +96,9 @@ def login_page_get(request: Request):
     except:
         return ","
 
-
+@app.route('/get_customers', methods=['GET'])
+def get_customers(request: Request):
+    return FirebaseInvocations.get_customers()
 @app.route('/create_user', methods=['PUT'])
 def create_user(request: Request):
     print("reached create user main")
@@ -140,6 +142,13 @@ def get_invoice_information(request: Request):
     return FirebaseInvocations.get_invoice_information(userID, invoiceID)
 
 
+def get_invoice_by_id(request: Request):
+    """ Retrieve an invoice given the user's id and the invoice id. """
+    user_id = request.args['userid']
+    invoice_id = request.args['invoiceid']
+    return FirebaseInvocations.get_invoice_json(user_id, invoice_id)
+
+
 @app.route('/get_user_by_id', methods=['GET'])
 def get_name(request: Request):
     """ Retrieve a single user's information based on its unique id. """
@@ -158,9 +167,10 @@ def set_invoice_status(request: Request):
         new_value = True
     else:
         new_value = False
-    FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
-                                           new_value)
-    return 'New values was recorded'
+    if FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
+                                              new_value):
+        return 'The invoice was found in the database'
+    return 'The invoice was not found in the database'
 
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
@@ -193,6 +203,17 @@ def get_user_by_id(request: Request):
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+@app.route('/create_invoice', methods=['PUT'])
+def create_invoice(request: Request):
+    print("reached create invoice main")
+    userID = request.args['userid']
+    invoiceID = request.args['invoiceid']
+    item_dict = {}
+    item_dict[request.args.get("item")] = [request.args.get("quantity"), request.args.get("price")]
+    FirebaseInvocations.create_invoice( item_dict, userID, invoiceID)
+
+    return "returned!"
 
 
 @app.route('/testing')
