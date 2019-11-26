@@ -64,27 +64,41 @@ userDATA = userDATA.get('Invoices', None)
 #              "Password": "password"
 #              })
 
-invoice_information = ""
-inventorydb = DATABASE.get('Invoices', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
-inventorydb = inventorydb.get("invoice1", None)
-inventorydb = inventorydb.get("status", None)
-inventorydb = inventorydb.get("delivered", None)
 
-invoice_information = ""
-try:
-    inventorydb = DATABASE.get('Invoices', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
-    print(inventorydb)
-    inventorydb = inventorydb.get("invoice1", None)
-    print(inventorydb)
-    statusdb = inventorydb.get("status", None)
-    print(statusdb)
-    print(type(statusdb.get("delivered")))
-    invoice_information += statusdb.get("issued")
-    print(invoice_information)
-    invoice_information += statusdb.get("paid")
-    print(invoice_information)
-    invoice_information += inventorydb.get("total price")
-    print(invoice_information[:-1])
-except:
-    print("it doesn't work")
+# def create_invoice(item_dict: dict, userID: str, invoiceID: str):
+#     """
+#
+#     :param item_dict:key is "item name", value is list like ["5", "4.5"], "5"
+#     is quatity and "4.5" is price
+#     {"apple": ["5", "4.5"], "banana": ["10", "3.5"]}
+#     :return: None
+#     """
+#     # calculate the total price
+#     price = 0
+#     # arrange the order list
+#     order_list = []
+#     for item in item_dict:
+#         # arrange each item info to a small dict
+#         item_dict_new = {}
+#         price += int(item_dict[item][0]) * float(item_dict[item][1])
+#         item_dict_new["item"] = item
+#         item_dict_new["quantity"] = item_dict[item][0]
+#         item_dict_new["price"] = item_dict[item][1]
+#         # append the small dict to the order list
+#         order_list.append(item_dict_new)
+#     DATABASE.put("Invoices/"+userID, invoiceID,
+#                  {
+#                      "orders": order_list,
+#                      'total price': str(price),
+#                      'status': {
+#                          'issued': True,
+#                          'paid': False,
+#                          'delivered': False
+#                     }
+#                  })
+# # item_dict = {}
+# # print([request.args.get("quantity"), request.args.get("price")])
+# # item_dict[request.args.get("item")] = [request.args.get("quantity"),
+# #                                        request.args.get("price")]
+# create_invoice({"hi":["5","4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
 

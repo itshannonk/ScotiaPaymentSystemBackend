@@ -150,3 +150,38 @@ def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
         DATABASE.put(invoice_path + '/status', status_type, new_value)
         return True
     return False
+
+
+def create_invoice(item_dict: dict, userID: str, invoiceID: str):
+    """
+
+    :param item_dict:key is "item name", value is list like ["5", "4.5"], "5"
+    is quatity and "4.5" is price
+    {"apple": ["5", "4.5"], "banana": ["10", "3.5"]}
+    :return: None
+    """
+    # calculate the total price
+    price = 0
+    # arrange the order list
+    order_list = []
+    for item in item_dict:
+        # arrange each item info to a small dict
+        item_dict_new = {}
+        price += int(item_dict[item][0]) * float(item_dict[item][1])
+        item_dict_new["item"] = item
+        item_dict_new["quantity"] = item_dict[item][0]
+        item_dict_new["price"] = item_dict[item][1]
+        # append the small dict to the order list
+        order_list.append(item_dict_new)
+    DATABASE.put("Invoices/" + userID, invoiceID,
+                 {
+                     "orders": order_list,
+                     'total price': str(price),
+                     'status': {
+                         'issued': True,
+                         'paid': False,
+                         'delivered': False
+                     }
+                 })
+
+

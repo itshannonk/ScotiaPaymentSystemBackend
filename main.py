@@ -202,6 +202,17 @@ def get_user_by_id(request: Request):
 def hello_world():
     return 'Hello, World!'
 
+@app.route('/create_invoice', methods=['PUT'])
+def create_invoice(request: Request):
+    print("reached create invoice main")
+    userID = request.args['userid']
+    invoiceID = request.args['invoiceid']
+    item_dict = {}
+    item_dict[request.args.get("item")] = [request.args.get("quantity"), request.args.get("price")]
+    FirebaseInvocations.create_invoice( item_dict, userID, invoiceID)
+
+    return "returned!"
+
 
 @app.route('/testing')
 def local_testing(request: Request):
