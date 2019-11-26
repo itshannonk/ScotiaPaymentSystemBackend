@@ -87,7 +87,7 @@ def get_invoice_information(userID, invoiceID):
     invoice_information = ""
     try:
         inventorydb = DATABASE.get('Invoices', userID)
-        inventorydb = inventorydb.get("invoice1", None)
+        inventorydb = inventorydb.get(invoiceID, None)
         statusdb = inventorydb.get("status", None)
         invoice_information += str(statusdb.get("delivered")) +","
         invoice_information += str(statusdb.get("issued"))+","
