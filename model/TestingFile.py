@@ -41,26 +41,44 @@ userDATA = userDATA.get('Invoices', None)
 #print(listOfInvoiceIDs[:-1])
 
 
-config = {
-        "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
-        "authDomain": "csc207-tli.firebaseapp.com",
-        "databaseURL": "https://csc207-tli.firebaseio.com",
-        "projectId": "csc207-tli",
-        "storageBucket": "csc207-tli.appspot.com",
-        "messagingSenderId": "707734809591",
-        "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
-        "measurementId": "G-VQCPWR41LV"
-    }
+# config = {
+#         "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
+#         "authDomain": "csc207-tli.firebaseapp.com",
+#         "databaseURL": "https://csc207-tli.firebaseio.com",
+#         "projectId": "csc207-tli",
+#         "storageBucket": "csc207-tli.appspot.com",
+#         "messagingSenderId": "707734809591",
+#         "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
+#         "measurementId": "G-VQCPWR41LV"
+#     }
+#
+# firebase = pyrebase.initialize_app(config)
+# auth = firebase.auth()
+# user = auth.create_user_with_email_and_password("helloamy@gmail.com", "password")
+# userID = user["localId"]
+# DATABASE.put("Business Owner", userID,
+#              {
+#              "Address": "address",
+#              "Email": "helloamy@gmail.com",
+#              "Name": "name",
+#              "Password": "password"
+#              })
 
-firebase = pyrebase.initialize_app(config)
-auth = firebase.auth()
-user = auth.create_user_with_email_and_password("helloamy@gmail.com", "password")
-userID = user["localId"]
-DATABASE.put("Business Owner", userID,
-             {
-             "Address": "address",
-             "Email": "helloamy@gmail.com",
-             "Name": "name",
-             "Password": "password"
-             })
+invoice_information = ""
+inventorydb = DATABASE.get('Invoices', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
+inventorydb = inventorydb.get("invoice1", "total price")
+print(inventorydb)
+inventorydb = inventorydb.get("total price", None)
+print(inventorydb)
+try:
+    inventorydb = DATABASE.get('Invoices', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
+    invoice_information += inventorydb.get("total price", None)
+    invoice_information += inventorydb.get("invoice1", "delivered")
+    invoice_information += inventorydb.get("invoice1", "issued")
+    invoice_information += inventorydb.get("invoice1", "paid")
+    for key in inventorydb:
+        invoice_information += str(key) + ','
+    print(invoice_information[:-1])
+except:
+    print("no")
 

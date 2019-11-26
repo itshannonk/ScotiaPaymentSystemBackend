@@ -87,12 +87,11 @@ def get_invoice_information(userID, invoiceID):
     invoice_information = ""
     try:
         inventorydb = DATABASE.get('Invoices', userID)
-        invoice_information += inventorydb.get(invoiceID, "delivered")
-        invoice_information += inventorydb.get(invoiceID, "issued")
-        invoice_information += inventorydb.get(invoiceID, "paid")
-        invoice_information += inventorydb.get("total price", None)
-        for key in inventorydb:
-            invoice_information += str(key) + ','
+        inventorydbStatus = inventorydb.get(invoiceID, "status")
+        invoice_information += inventorydbStatus.get("delivered", None)
+        invoice_information += inventorydbStatus.get("issued", None)
+        invoice_information += inventorydbStatus.get("paid", None)
+        invoice_information += inventorydb.get(invoiceID, "total price")
         return invoice_information[:-1]
     except:
         return ""
