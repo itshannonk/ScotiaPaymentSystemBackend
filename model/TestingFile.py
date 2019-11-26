@@ -66,9 +66,12 @@ userDATA = userDATA.get('Invoices', None)
 
 invoice_information = ""
 inventorydb = DATABASE.get('Invoices', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
-inventorydb = inventorydb.get("invoice1", "total price")
+inventorydb = inventorydb.get("invoice1", None)
+inventorydb = inventorydb.get("status", None)
+inventorydb = inventorydb.get("delivered", None)
+
 print(inventorydb)
-inventorydb = inventorydb.get("total price", None)
+inventorydb = inventorydb.get("delievered", None)
 print(inventorydb)
 try:
     inventorydb = DATABASE.get('Invoices', "FEkg7hBAVxPgbwHHp2VmNwVCCwK2")
