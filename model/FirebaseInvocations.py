@@ -89,11 +89,11 @@ def get_invoice_information(userID, invoiceID):
         inventorydb = DATABASE.get('Invoices', userID)
         inventorydb = inventorydb.get("invoice1", None)
         statusdb = inventorydb.get("status", None)
-        invoice_information += str(statusdb.get("delivered"))
-        invoice_information += str(statusdb.get("issued"))
-        invoice_information += str(statusdb.get("paid"))
+        invoice_information += str(statusdb.get("delivered")) +","
+        invoice_information += str(statusdb.get("issued"))+","
+        invoice_information += str(statusdb.get("paid"))+","
         invoice_information += str(inventorydb.get("total price", None))
-        return invoice_information[:-1]
+        return invoice_information
     except:
         return ""
 
