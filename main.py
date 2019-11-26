@@ -117,7 +117,7 @@ def create_user(request: Request):
     userID = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"), request.args.get("email"), request.args.get("name"),
                                     request.args.get("password"), request.args.get("role"), userID)
-    return "returned!"
+    return userID
 
 @app.route('/get_display_name', methods=['GET'])
 def get_display_name(request: Request):
