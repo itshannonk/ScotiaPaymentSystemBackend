@@ -145,8 +145,8 @@ def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
     :param new_value: The new status' value (either True or False).
     :return: Return True iff the invoice path is in the database.
     """
-    invoice_path = '/Invoices/' + user_id + '/' + invoice_id + '/status'
-    if DATABASE.get(invoice_path, status_type):
-        DATABASE.put(invoice_path, status_type, new_value)
+    invoice_path = '/Invoices/' + user_id + '/' + invoice_id
+    if DATABASE.get(invoice_path, '/status'):
+        DATABASE.put(invoice_path + '/status', status_type, new_value)
         return True
     return False

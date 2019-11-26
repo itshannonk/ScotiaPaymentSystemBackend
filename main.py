@@ -165,9 +165,10 @@ def set_invoice_status(request: Request):
         new_value = True
     else:
         new_value = False
-    FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
-                                           new_value)
-    return ''
+    if FirebaseInvocations.set_invoice_status(user_id, invoice_id, status_type,
+                                              new_value):
+        return 'The invoice was found in the database'
+    return 'The invoice was not found in the database'
 
 
 @app.route('/shannons-testing-functionCOPY', methods=['GET'])
