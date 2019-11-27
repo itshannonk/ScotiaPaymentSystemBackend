@@ -49,7 +49,7 @@ at the root of your project named main.py
 """
 # import requests
 from flask import Request, Flask
-from model import DataRetrieval, FirebaseInvocations
+from model import FirebaseInvocations
 app = Flask(__name__)
 
 @app.route('/login_page_get', methods=['GET'])
@@ -99,6 +99,12 @@ def login_page_get(request: Request):
 @app.route('/get_customers', methods=['GET'])
 def get_customers(request: Request):
     return FirebaseInvocations.get_customers()
+
+@app.route('/get_assigned_customers', methods=['GET'])
+def get_assigned_customers(request: Request):
+    userID = request.args.get("userID")
+    return FirebaseInvocations.get_assigned_customers(userID)
+
 @app.route('/create_user', methods=['PUT'])
 def create_user(request: Request):
     print("reached create user main")
@@ -115,6 +121,7 @@ def create_user(request: Request):
 
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
+    auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
     user = auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
     userID = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"), request.args.get("email"), request.args.get("name"),
@@ -173,24 +180,6 @@ def set_invoice_status(request: Request):
     return 'The invoice was not found in the database'
 
 
-@app.route('/shannons-testing-functionCOPY', methods=['GET'])
-def hello_get(request: Request):
-    """HTTP Cloud Function.
-    Args:
-        request (flask.Request): The request object.
-        <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
-    Returns:
-        The response text, or any set of values that can be turned into a
-        Response object using `make_response`
-        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
-    """
-    result = DataRetrieval.get_pls_work()
-    # return result
-    return request.args
-    # return info
-    # return 'return from hello_get function in main.py ' + request.url
-
-
 @app.route('/get_user_by_id', methods=['GET'])
 def get_user_by_id(request: Request):
     """ Retrieve a single user's information based on its unique id. """
@@ -198,11 +187,6 @@ def get_user_by_id(request: Request):
     user_id = request.args['userid']
     return FirebaseInvocations.get_user_data(user_type, user_id)
 
-
-# TRYING TO RUN A LOCAL SERVER USING FLASK
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
 
 @app.route('/create_invoice', methods=['PUT'])
 def create_invoice(request: Request):
@@ -214,23 +198,3 @@ def create_invoice(request: Request):
     FirebaseInvocations.create_invoice( item_dict, userID, invoiceID)
 
     return "returned!"
-
-
-@app.route('/testing')
-def local_testing(request: Request):
-    """HTTP Cloud Function.
-    Args:
-        request (flask.Request): The request object.
-        <http://flask.pocoo.org/docs/1.0/api/#flask.Request>
-    Returns:
-        The response text, or any set of values that can be turned into a
-        Response object using `make_response`
-        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
-    """
-    result = DataRetrieval.get_pls_work()
-    return result
-
-
-# def get_customer(request):
-#     r = request.get("https://us-central1-csc207-tli.cloudfunctions.net/testing")
-

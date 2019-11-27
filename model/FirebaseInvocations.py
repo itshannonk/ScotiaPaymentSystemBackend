@@ -124,7 +124,8 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                      {
                          "Email": email,
                          "Name": name,
-                         "Password": password
+                         "Password": password,
+                         "Customers": {}
                      })
     else:
         DATABASE.put(role, userID,
@@ -195,6 +196,19 @@ def get_customers():
     listOfCustomerIDs = ""
     try:
         inventorydb = DATABASE.get('Business Owner', None)
+        for key in inventorydb:
+            listOfCustomerIDs += str(key) + ','
+        return listOfCustomerIDs[:-1]
+    except:
+        return
+
+def get_assigned_customers(userID: str):
+    customer_path = '/Truck Driver/' + userID + '/Customers'
+
+    listOfCustomerIDs = ""
+    try:
+
+        inventorydb = DATABASE.get(customer_path, None)
         for key in inventorydb:
             listOfCustomerIDs += str(key) + ','
         return listOfCustomerIDs[:-1]
