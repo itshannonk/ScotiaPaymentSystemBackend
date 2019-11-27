@@ -81,17 +81,17 @@ def login_page_get(request: Request):
     # TODO: change the statement above to the commented one below:
     # user = FirebaseInvocations.get_current_user(request.args.get("email"), request.args.get("email"))
     try:
-        if (FirebaseInvocations.get_user_data('Business Owner', user["localId"]) != None):
+        if FirebaseInvocations.get_user_data('Business Owner', user["localId"]):
             return "Business Owner"+","+user["localId"]
     except:
         pass
     try:
-        if (FirebaseInvocations.get_user_data('CocaCola', user["localId"])  != None):
+        if FirebaseInvocations.get_user_data('CocaCola', user["localId"]):
             return "CocaCola"+","+user["localId"]
     except:
         pass
     try:
-        if (FirebaseInvocations.get_user_data('Truck Driver', user["localId"])  != None):
+        if FirebaseInvocations.get_user_data('Truck Driver', user["localId"]):
             return "Truck Driver"+","+user["localId"]
     except:
         return ","

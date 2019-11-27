@@ -46,19 +46,19 @@ def get_login_name(userID):
     :return: a json object containing the user's information
     """
     try:
-        if (DATABASE.get('/Business Owner', userID) != None):
+        if DATABASE.get('/Business Owner', userID):
             userDATA = DATABASE.get('/Business Owner', userID)
             return userDATA.get("Name", None)
     except:
         pass
     try:
-        if (DATABASE.get('/CocaCola', userID) != None):
+        if DATABASE.get('/CocaCola', userID):
             userDATA = DATABASE.get('/CocaCola', userID)
             return userDATA.get("Name", None)
     except:
         pass
     try:
-        if (DATABASE.get('/Truck Driver', userID) != None):
+        if DATABASE.get('/Truck Driver', userID):
             userDATA = DATABASE.get('/Truck Driver', userID)
             return userDATA.get("Name", None)
     except:
