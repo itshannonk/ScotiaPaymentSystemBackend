@@ -211,7 +211,7 @@ def get_assigned_invoices(userID: str):
 
         inventorydb = DATABASE.get(customer_path, None)
         for key in inventorydb:
-            listOfCustomerIDs += str(key) + ','
+            listOfCustomerIDs += str(key) + ":" + str(inventorydb[key]) + ','
         return listOfCustomerIDs[:-1]
     except:
         return ""
