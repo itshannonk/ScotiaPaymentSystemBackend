@@ -202,8 +202,9 @@ def get_customers():
     except:
         return
 
-def get_assigned_customers(userID: str):
-    customer_path = '/Truck Driver/' + userID + '/Customers'
+def get_assigned_invoices(userID: str):
+    # and invoice IDs lol
+    customer_path = '/Truck Driver/' + userID + '/Assigned Invoices'
 
     listOfCustomerIDs = ""
     try:

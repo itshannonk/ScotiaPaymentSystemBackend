@@ -100,10 +100,10 @@ def login_page_get(request: Request):
 def get_customers(request: Request):
     return FirebaseInvocations.get_customers()
 
-@app.route('/get_assigned_customers', methods=['GET'])
-def get_assigned_customers(request: Request):
+@app.route('/get_assigned_invoices', methods=['GET'])
+def get_assigned_invoices(request: Request):
     userID = request.args.get("userID")
-    return FirebaseInvocations.get_assigned_customers(userID)
+    return FirebaseInvocations.get_assigned_invoices(userID)
 
 @app.route('/create_user', methods=['PUT'])
 def create_user(request: Request):
