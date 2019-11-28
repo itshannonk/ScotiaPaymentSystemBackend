@@ -14,8 +14,8 @@ DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
 
 listOfInvoiceIDs = ""
-userDATA = DATABASE.get('/Business Owner', 'YwF7HkeUCkRUU6V00lkh2d0p5512')
-userDATA = userDATA.get('Invoices', None)
+# userDATA = DATABASE.get('/Business Owner', 'YwF7HkeUCkRUU6V00lkh2d0p5512')
+# userDATA = userDATA.get('Invoices', None)
 #print(userDATA)
 
 #print(userDATA)
@@ -101,4 +101,17 @@ userDATA = userDATA.get('Invoices', None)
 # # item_dict[request.args.get("item")] = [request.args.get("quantity"),
 # #                                        request.args.get("price")]
 # create_invoice({"hi":["5","4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
+
+customer_path = '/Truck Driver/' + "nSTFFgWdZvYpenarvvTmpXxJIYA3" + '/Assigned Invoices'
+
+listOfCustomerIDs = ""
+try:
+
+    inventorydb = DATABASE.get(customer_path, None)
+    for key in inventorydb:
+        listOfCustomerIDs += key + ":" + DATABASE.get(customer_path, key) + ","
+
+    print(listOfCustomerIDs[:-1])
+except:
+    print("nothing")
 
