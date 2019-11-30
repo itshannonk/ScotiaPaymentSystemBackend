@@ -46,19 +46,19 @@ def get_login_name(userID):
     :return: a json object containing the user's information
     """
     try:
-        if (DATABASE.get('/Business Owner', userID) != None):
+        if DATABASE.get('/Business Owner', userID):
             userDATA = DATABASE.get('/Business Owner', userID)
             return userDATA.get("Name", None)
     except:
         pass
     try:
-        if (DATABASE.get('/CocaCola', userID) != None):
+        if DATABASE.get('/CocaCola', userID):
             userDATA = DATABASE.get('/CocaCola', userID)
             return userDATA.get("Name", None)
     except:
         pass
     try:
-        if (DATABASE.get('/Truck Driver', userID) != None):
+        if DATABASE.get('/Truck Driver', userID):
             userDATA = DATABASE.get('/Truck Driver', userID)
             return userDATA.get("Name", None)
     except:
@@ -123,12 +123,15 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                          "Name": name,
                          "Password": password
                      })
+        items = {"Coke": ["5", "0.45"], "Cherry Coke": ["10", "0.50"]}
+        create_invoice(items, userID, 'invoice1')
     elif role == "a Truck Driver":
         DATABASE.put("Truck Driver", userID,
                      {
                          "Email": email,
                          "Name": name,
-                         "Password": password
+                         "Password": password,
+                         "Customers": {}
                      })
     else:
         DATABASE.put(role, userID,
@@ -187,6 +190,7 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'delivered': False
                      }
                  })
+
 def get_customers():
     """ Change invoice_id's status based on status_type and new_value.
 
@@ -201,6 +205,21 @@ def get_customers():
         inventorydb = DATABASE.get('Business Owner', None)
         for key in inventorydb:
             listOfCustomerIDs += str(key) + ','
+        return listOfCustomerIDs[:-1]
+    except:
+        return
+
+def get_assigned_invoices(userID: str):
+    # and invoice IDs lol
+    customer_path = '/Truck Driver/' + userID + '/Assigned Invoices'
+
+    listOfCustomerIDs = ""
+    try:
+
+        inventorydb = DATABASE.get(customer_path, None)
+        for key in inventorydb:
+            listOfCustomerIDs += key + ":" + DATABASE.get(customer_path, key) + ","
+
         return listOfCustomerIDs[:-1]
     except:
         return ""
