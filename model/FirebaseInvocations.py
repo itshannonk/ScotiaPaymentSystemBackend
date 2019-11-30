@@ -119,6 +119,8 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                          "Name": name,
                          "Password": password
                      })
+        items = {"Coke": ["5", "0.45"], "Cherry Coke": ["10", "0.50"]}
+        create_invoice(items, userID, 'invoice1')
     elif role == "a Truck Driver":
         DATABASE.put("Truck Driver", userID,
                      {
@@ -184,6 +186,7 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'delivered': False
                      }
                  })
+
 def get_customers():
     """ Change invoice_id's status based on status_type and new_value.
 
