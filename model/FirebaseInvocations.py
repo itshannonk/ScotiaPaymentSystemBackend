@@ -226,3 +226,10 @@ def get_assigned_invoices(userID: str):
 
 
 # DATABASE.put('/Testing', 'Testing', '123')
+DATABASE.put("Business Owner", 'JHUGYhjeig4bHIougib',
+                     {
+                         "Address": 'uoft',
+                         "Email": 'email@gmail.com',
+                         "Name": 'Shannon Komguem',
+                         "Password": 'password'
+                     })
