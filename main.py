@@ -121,7 +121,7 @@ def create_user(request: Request):
 
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
-    auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
+    # auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
     user = auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
     userID = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"), request.args.get("email"), request.args.get("name"),

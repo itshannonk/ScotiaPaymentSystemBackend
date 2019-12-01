@@ -86,8 +86,8 @@ def get_invoice_information(userID, invoiceID):
     """
     invoice_information = ""
     try:
-        inventorydb = DATABASE.get('Invoices', "VqsavQ0knRfeWhxZ9MfS32oPiKr1")
-        inventorydb = inventorydb.get("invoice1", None)
+        inventorydb = DATABASE.get('Invoices', userID)
+        inventorydb = inventorydb.get(invoiceID, None)
         statusdb = inventorydb.get("status", None)
         orderdb = inventorydb.get("orders", None)[0]
         invoice_information += str(statusdb.get("delivered")) + ","
@@ -224,3 +224,12 @@ def get_assigned_invoices(userID: str):
     except:
         return ""
 
+
+# DATABASE.put('/Testing', 'Testing', '123')
+DATABASE.put("Business Owner", 'JHUGYhjeig4bHIougib',
+                     {
+                         "Address": 'uoft',
+                         "Email": 'email@gmail.com',
+                         "Name": 'Shannon Komguem',
+                         "Password": 'password'
+                     })
