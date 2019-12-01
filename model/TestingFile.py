@@ -102,16 +102,20 @@ listOfInvoiceIDs = ""
 # #                                        request.args.get("price")]
 # create_invoice({"hi":["5","4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
 
-customer_path = '/Truck Driver/' + "nSTFFgWdZvYpenarvvTmpXxJIYA3" + '/Assigned Invoices'
+invoice_information = ""
+inventorydb = DATABASE.get('Invoices', "VqsavQ0knRfeWhxZ9MfS32oPiKr1")
+inventorydb = inventorydb.get("invoice1", None)
+statusdb = inventorydb.get("status", None)
+print(inventorydb)
+orderdb = inventorydb.get("orders", None)[0]
+print(orderdb)
+invoice_information += str(statusdb.get("delivered")) + ","
+invoice_information += str(statusdb.get("issued")) + ","
+invoice_information += str(statusdb.get("paid")) + ","
+invoice_information += str(inventorydb.get("total price")) + ","
+invoice_information += str(orderdb.get("item")) + ","
+invoice_information += str(orderdb.get("price")) + ","
+invoice_information += str(orderdb.get("quantity"))
+print(invoice_information)
 
-listOfCustomerIDs = ""
-try:
-
-    inventorydb = DATABASE.get(customer_path, None)
-    for key in inventorydb:
-        listOfCustomerIDs += key + ":" + DATABASE.get(customer_path, key) + ","
-
-    print(listOfCustomerIDs[:-1])
-except:
-    print("nothing")
 

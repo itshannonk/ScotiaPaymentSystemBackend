@@ -86,17 +86,17 @@ def get_invoice_information(userID, invoiceID):
     """
     invoice_information = ""
     try:
-        inventorydb = DATABASE.get('Invoices', userID)
-        inventorydb = inventorydb.get(invoiceID, None)
+        inventorydb = DATABASE.get('Invoices', "VqsavQ0knRfeWhxZ9MfS32oPiKr1")
+        inventorydb = inventorydb.get("invoice1", None)
         statusdb = inventorydb.get("status", None)
-        orderdb = inventorydb.get("orders", None).get("0", None)
-        invoice_information += str(statusdb.get("delivered")) +","
-        invoice_information += str(statusdb.get("issued"))+","
-        invoice_information += str(statusdb.get("paid"))+","
-        invoice_information += str(inventorydb.get("total price", None)) + ","
-        invoice_information += str(orderdb.get("item", None)) + ","
-        invoice_information += str(orderdb.get("price", None)) + ","
-        invoice_information += str(orderdb.get("quantity", None))
+        orderdb = inventorydb.get("orders", None)[0]
+        invoice_information += str(statusdb.get("delivered")) + ","
+        invoice_information += str(statusdb.get("issued")) + ","
+        invoice_information += str(statusdb.get("paid")) + ","
+        invoice_information += str(inventorydb.get("total price")) + ","
+        invoice_information += str(orderdb.get("item")) + ","
+        invoice_information += str(orderdb.get("price")) + ","
+        invoice_information += str(orderdb.get("quantity"))
         return invoice_information
     except:
         return ""
