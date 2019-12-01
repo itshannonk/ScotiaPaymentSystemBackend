@@ -123,8 +123,8 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                          "Name": name,
                          "Password": password
                      })
-        # items = {"Coke": ["5", "0.45"], "Cherry Coke": ["10", "0.50"]}
-        # create_invoice(items, userID, 'invoice1')
+        items = {"Coke": ["5", "0.45"], "Cherry Coke": ["10", "0.50"]}
+        create_invoice(items, userID, 'invoice1')
     elif role == "a Truck Driver":
         DATABASE.put("Truck Driver", userID,
                      {
