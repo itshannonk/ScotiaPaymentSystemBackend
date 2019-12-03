@@ -65,6 +65,7 @@ listOfInvoiceIDs = ""
 #              })
 
 
+<<<<<<< HEAD
 def create_invoice(item_dict: dict, userID: str, invoiceID: str):
     """
 
@@ -101,6 +102,61 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
 # item_dict[request.args.get("item")] = [request.args.get("quantity"),
 #                                        request.args.get("price")]
 create_invoice({"hi":["5","4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
+=======
+# def create_invoice(item_dict: dict, userID: str, invoiceID: str):
+#     """
+#
+#     :param item_dict:key is "item name", value is list like ["5", "4.5"], "5"
+#     is quatity and "4.5" is price
+#     {"apple": ["5", "4.5"], "banana": ["10", "3.5"]}
+#     :return: None
+#     """
+#     # calculate the total price
+#     price = 0
+#     # arrange the order list
+#     order_list = []
+#     for item in item_dict:
+#         # arrange each item info to a small dict
+#         item_dict_new = {}
+#         price += int(item_dict[item][0]) * float(item_dict[item][1])
+#         item_dict_new["item"] = item
+#         item_dict_new["quantity"] = item_dict[item][0]
+#         item_dict_new["price"] = item_dict[item][1]
+#         # append the small dict to the order list
+#         order_list.append(item_dict_new)
+#     DATABASE.put("Invoices/"+userID, invoiceID,
+#                  {
+#                      "orders": order_list,
+#                      'total price': str(price),
+#                      'status': {
+#                          'issued': True,
+#                          'paid': False,
+#                          'delivered': False
+#                     }
+#                  })
+# # item_dict = {}
+# # print([request.args.get("quantity"), request.args.get("price")])
+# # item_dict[request.args.get("item")] = [request.args.get("quantity"),
+# #                                        request.args.get("price")]
+# create_invoice({"hi":["5","4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
+
+invoice_information = ""
+inventorydb = DATABASE.get('Invoices', "VqsavQ0knRfeWhxZ9MfS32oPiKr1")
+inventorydb = inventorydb.get("invoice1", None)
+statusdb = inventorydb.get("status", None)
+print(inventorydb)
+orderdb = inventorydb.get("orders", None)[0]
+print(orderdb)
+invoice_information += str(statusdb.get("delivered")) + ","
+invoice_information += str(statusdb.get("issued")) + ","
+invoice_information += str(statusdb.get("paid")) + ","
+invoice_information += str(inventorydb.get("total price")) + ","
+invoice_information += str(orderdb.get("item")) + ","
+invoice_information += str(orderdb.get("price")) + ","
+invoice_information += str(orderdb.get("quantity"))
+print(invoice_information)
+
+>>>>>>> 89276964e8a7d4ba882ff42dddfd9b6c52671851
 
 # customer_path = '/Truck Driver/' + "nSTFFgWdZvYpenarvvTmpXxJIYA3" + '/Assigned Invoices'
 #
