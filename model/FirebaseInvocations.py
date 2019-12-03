@@ -184,6 +184,7 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'delivered': False
                      }
                  })
+# Returns customerID
 def get_customers():
     """ Change invoice_id's status based on status_type and new_value.
 
@@ -201,6 +202,7 @@ def get_customers():
         return listOfCustomerIDs[:-1]
     except:
         return
+
 
 def get_assigned_invoices(userID: str):
     # and invoice IDs lol
