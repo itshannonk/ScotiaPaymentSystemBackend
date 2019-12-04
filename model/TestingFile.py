@@ -4,10 +4,8 @@ from model import Invoice
 import pyrebase
 import json
 from flask import *
-<<<<<<< HEAD
 import string
 import random
-=======
 
 app = Flask(__name__)
 
@@ -15,7 +13,6 @@ invoiceObject = Invoice.Invoice()
 JSONversion = json.dumps(vars(invoiceObject))
 # print(JSONversion)
 
->>>>>>> 43d997e9964f5088f358d39cb79c6cf4639dd17b
 DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
 # userDATA = DATABASE.get('/Business Owner', 'YwF7HkeUCkRUU6V00lkh2d0p5512')
@@ -144,21 +141,21 @@ create_invoice({"hi": ["5", "4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
 # #                                        request.args.get("price")]
 # create_invoice({"hi":["5","4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
 
-invoice_information = ""
-inventorydb = DATABASE.get('Invoices', "VqsavQ0knRfeWhxZ9MfS32oPiKr1")
-inventorydb = inventorydb.get("invoice1", None)
-statusdb = inventorydb.get("status", None)
-print(inventorydb)
-orderdb = inventorydb.get("orders", None)[0]
-print(orderdb)
-invoice_information += str(statusdb.get("delivered")) + ","
-invoice_information += str(statusdb.get("issued")) + ","
-invoice_information += str(statusdb.get("paid")) + ","
-invoice_information += str(inventorydb.get("total price")) + ","
-invoice_information += str(orderdb.get("item")) + ","
-invoice_information += str(orderdb.get("price")) + ","
-invoice_information += str(orderdb.get("quantity"))
-print(invoice_information)
+# invoice_information = ""
+# inventorydb = DATABASE.get('Invoices', "VqsavQ0knRfeWhxZ9MfS32oPiKr1")
+# inventorydb = inventorydb.get("invoice1", None)
+# statusdb = inventorydb.get("status", None)
+# print(inventorydb)
+# orderdb = inventorydb.get("orders", None)[0]
+# print(orderdb)
+# invoice_information += str(statusdb.get("delivered")) + ","
+# invoice_information += str(statusdb.get("issued")) + ","
+# invoice_information += str(statusdb.get("paid")) + ","
+# invoice_information += str(inventorydb.get("total price")) + ","
+# invoice_information += str(orderdb.get("item")) + ","
+# invoice_information += str(orderdb.get("price")) + ","
+# invoice_information += str(orderdb.get("quantity"))
+# print(invoice_information)
 
 
 # customer_path = '/Truck Driver/' + "nSTFFgWdZvYpenarvvTmpXxJIYA3" + '/Assigned Invoices'
@@ -174,3 +171,4 @@ print(invoice_information)
 # except:
 #     print("nothing")
 #
+print(DATABASE.get('/Invoices/currentInvoiceID', None))
