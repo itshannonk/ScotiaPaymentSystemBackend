@@ -68,7 +68,7 @@ def create_user(request: Request):
     :param request: flask.Request object.
     :return: The new user's unique id.
     """
-    user = FirebaseInvocations.get_current_user(request.args.get("email"),
+    user = FirebaseInvocations.get_user_registration(request.args.get("email"),
                                                 request.args.get("password"))
     user_id = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"),
