@@ -138,7 +138,7 @@ def get_current_invoiceID(request: Request):
 
 
 @app.route('/get_list_of_invoice_ids', methods=['POST'])
-def set_current_invoiceID(request: Request):
+def increment_current_invoiceID(request: Request):
     """ Increment the current invoice's id by 1.
 
     :param request: flask.Request object.
