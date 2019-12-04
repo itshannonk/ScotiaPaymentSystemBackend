@@ -127,13 +127,13 @@ def get_current_invoiceID() -> str:
     return DATABASE.get('/Invoices/currentInvoiceID', None)
 
 
-def set_current_invoiceID(newVal: int) -> None:
-    """ Sets the current invoice's id to newVal.
+def increment_current_invoiceID() -> None:
+    """ Increment the current invoice's id by 1.
 
     :param newVal is the new current invoice ID
     :return: None.
     """
-    return DATABASE.put("/Invoices", "currentInvoiceID", newVal)
+    return DATABASE.put("/Invoices", "currentInvoiceID", get_current_invoiceID() + 1)
 
 
 def create_user(address: str, email: str, name: str, password: str, role: str,
