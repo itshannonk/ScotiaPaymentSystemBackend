@@ -165,8 +165,8 @@ def get_invoice_information(request: Request):
 def get_user_information(request: Request):
     """
 
-    :param request:
-    :return:
+    :param request: flask.Request object.
+    :return: A comma separated string containing the "Address, Email, Name" information about a user
     """
     user_id = request.args["userID"]
     return FirebaseInvocations.get_user_information(user_id)

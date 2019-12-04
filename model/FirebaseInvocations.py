@@ -112,8 +112,8 @@ def get_invoice_information(user_id: str, invoice_id: str) -> str:
 def get_user_information(user_id: str) -> str:
     """
 
-    :param user_id:
-    :return:
+    :param user_id: User's unique id.
+    :return: A comma separated string containing the "Address, Email, Name" information about a user
     """
     user_information = ""
     try:
