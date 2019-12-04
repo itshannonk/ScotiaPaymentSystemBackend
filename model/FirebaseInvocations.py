@@ -212,7 +212,7 @@ def create_invoice(item_dict: dict, user_id: str, invoice_id: str):
     for item in item_dict:
         # arrange each item info to a small dict
         item_dict_new = {}
-        price += int(item_dict[item][0]) * float(item_dict[item][1])
+        price += round(int(item_dict[item][0]) * float(item_dict[item][1]),2)
         item_dict_new["item"] = item
         item_dict_new["quantity"] = item_dict[item][0]
         item_dict_new["price"] = item_dict[item][1]

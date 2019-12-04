@@ -15,7 +15,7 @@ JSONversion = json.dumps(vars(invoiceObject))
 
 DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
-DATABASE.put("/Invoices", "currentInvoiceID", int(DATABASE.get('/Invoices/currentInvoiceID', None)) + 1)
+print(round(2.444, 2))
 # userDATA = DATABASE.get('/Business Owner', 'YwF7HkeUCkRUU6V00lkh2d0p5512')
 # userDATA = userDATA.get('Invoices', None)
 # print(userDATA)
