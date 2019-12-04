@@ -161,6 +161,15 @@ def get_invoice_information(request: Request):
     invoice_id = request.args['invoiceID']
     return FirebaseInvocations.get_invoice_information(user_id, invoice_id)
 
+@app.route('/get_user_information', methods=['GET'])
+def get_user_information(request: Request):
+    """
+
+    :param request:
+    :return:
+    """
+    user_id = request.args["userID"]
+    return FirebaseInvocations.get_user_information(user_id)
 
 @app.route('/get_invoice_by_id', methods=['GET'])
 def get_invoice_by_id(request: Request):
