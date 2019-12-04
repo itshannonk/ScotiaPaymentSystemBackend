@@ -24,8 +24,8 @@ def get_current_user(email: str, password: str):
         "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
         "measurementId": "G-VQCPWR41LV"
     }
-    firebase = pyrebase.initialize_app(config)
-    auth = firebase.auth()
+    firebase_db = pyrebase.initialize_app(config)
+    auth = firebase_db.auth()
     return auth.sign_in_with_email_and_password(email, password)
 
 
@@ -39,66 +39,70 @@ def get_user_data(user_type: str, user_id: str):
     return DATABASE.get('/' + user_type, user_id)
 
 
-def get_login_name(userID):
-    """ Get a user's data base on user_type and user_id.
+def get_login_name(user_id: str) -> str:
+    """ Return a the name of the user with id user_id.
 
-    :param user_type: Business Owner, CocaCola, Truck Driver
-    :param user_id: User's unique id in the database
-    :return: a json object containing the user's information
+    :param user_id: User's unique is.
+    :return: A string containing a user's name.
     """
     try:
-        if DATABASE.get('/Business Owner', userID):
-            userDATA = DATABASE.get('/Business Owner', userID)
-            return userDATA.get("Name", None)
+        if DATABASE.get('/Business Owner', user_id):
+            user_data = DATABASE.get('/Business Owner', user_id)
+            return user_data.get("Name", None)
     except:
         pass
     try:
-        if DATABASE.get('/CocaCola', userID):
-            userDATA = DATABASE.get('/CocaCola', userID)
-            return userDATA.get("Name", None)
+        if DATABASE.get('/CocaCola', user_id):
+            user_data = DATABASE.get('/CocaCola', user_id)
+            return user_data.get("Name", None)
     except:
         pass
     try:
-        if DATABASE.get('/Truck Driver', userID):
-            userDATA = DATABASE.get('/Truck Driver', userID)
-            return userDATA.get("Name", None)
+        if DATABASE.get('/Truck Driver', user_id):
+            user_data = DATABASE.get('/Truck Driver', user_id)
+            return user_data.get("Name", None)
     except:
         return ""
 
 
-def get_list_of_invoice_ids(userID):
+def get_list_of_invoice_ids(user_id: str) -> str:
+    """ Return a list of a given user's invoices.
+
+    :param user_id: User's unique id.
+    :return: a string of invoiceIDs under the userID, where it is separated by
+    commas.
     """
-    :param userID: the userId
-    :return: a string of invoiceIDs under the userID, where it is separated by commas
-    """
-    listOfInvoiceIDs = ""
+    invoice_ids = ""
     try:
-        inventorydb = DATABASE.get('Invoices', userID)
-        for key in inventorydb:
-            listOfInvoiceIDs += str(key) + ','
-        return listOfInvoiceIDs[:-1]
+        inventory_db = DATABASE.get('Invoices', user_id)
+        for key in inventory_db:
+            invoice_ids += str(key) + ','
+        return invoice_ids[:-1]
     except:
         return ""
 
 
-def get_invoice_information(userID, invoiceID):
-    """
-    :param userID: the userId
-    :return: "delivered, issued, paid, price"
+def get_invoice_information(user_id: str, invoice_id: str) -> str:
+    """ Return a given invoice's information
+
+    :param user_id: User's unique id.
+    :param invoice_id: Invoice's unique id.
+    :return: A comma separated string containing the "delivered, issued, paid,
+    price" information about an invoice.
     """
     invoice_information = ""
     try:
-        inventorydb = DATABASE.get('Invoices', userID)
-        inventorydb = inventorydb.get(invoiceID, None)
-        statusdb = inventorydb.get("status", None)
-        orderdb = inventorydb.get("orders", None)[0]
-        invoice_information += str(statusdb.get("delivered")) + ","
-        invoice_information += str(statusdb.get("issued")) + ","
-        invoice_information += str(statusdb.get("paid")) + ","
-        invoice_information += str(inventorydb.get("total price")) + ","
-        invoice_information += str(orderdb.get("item")) + ","
-        invoice_information += str(orderdb.get("price")) + ","
-        invoice_information += str(orderdb.get("quantity"))
+        inventory_db = DATABASE.get('Invoices', user_id)
+        inventory_db = inventory_db.get(invoice_id, None)
+        status_db = inventory_db.get("status", None)
+        order_db = inventory_db.get("orders", None)[0]
+        invoice_information += str(status_db.get("delivered")) + ","
+        invoice_information += str(status_db.get("issued")) + ","
+        invoice_information += str(status_db.get("paid")) + ","
+        invoice_information += str(inventory_db.get("total price")) + ","
+        invoice_information += str(order_db.get("item")) + ","
+        invoice_information += str(order_db.get("price")) + ","
+        invoice_information += str(order_db.get("quantity"))
         return invoice_information
     except:
         return ""
@@ -115,12 +119,21 @@ def get_invoice_json(user_id: str, invoice_id: str):
     return DATABASE.get(invoice_path, invoice_id)
 
 
-def get_current_invoiceID():
+def get_current_invoiceID() -> str:
+    """ Get the most recent invoice's id.
+
+    :return: A string containing an invoice's id.
+    """
     return DATABASE.get('/Invoices/currentInvoiceID', None)
 
 
-def set_current_invoiceID():
-    return DATABASE.put("/Invoices", "currentInvoiceID", str(get_current_invoiceID() + 1))
+def set_current_invoiceID() -> None:
+    """ Increment the current invoice's id by 1.
+
+    :return: None.
+    """
+    return DATABASE.put("/Invoices", "currentInvoiceID",
+                        str(get_current_invoiceID() + 1))
 
 
 def create_user(address: str, email: str, name: str, password: str, role: str,
@@ -181,7 +194,7 @@ def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
     return False
 
 
-def create_invoice(item_dict: dict, userID: str, invoiceID: str):
+def create_invoice(item_dict: dict, user_id: str, invoice_id: str):
     """
 
     :param item_dict:key is "item name", value is list like ["5", "4.5"], "5"
@@ -202,7 +215,7 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
         item_dict_new["price"] = item_dict[item][1]
         # append the small dict to the order list
         order_list.append(item_dict_new)
-    DATABASE.put("Invoices/" + userID, invoiceID,
+    DATABASE.put("Invoices/" + user_id, invoice_id,
                  {
                      "orders": order_list,
                      'total price': str(price),
@@ -212,7 +225,8 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'delivered': False
                      }
                  })
-    DATABASE.put("Truck Driver/nSTFFgWdZvYpenarvvTmpXxJIYA3/Assigned Invoices", invoiceID, userID)
+    DATABASE.put("Truck Driver/nSTFFgWdZvYpenarvvTmpXxJIYA3/Assigned Invoices",
+                 invoice_id, user_id)
 
 
 # Returns customerID
