@@ -89,10 +89,14 @@ def get_invoice_information(userID, invoiceID):
         inventorydb = DATABASE.get('Invoices', userID)
         inventorydb = inventorydb.get(invoiceID, None)
         statusdb = inventorydb.get("status", None)
-        invoice_information += str(statusdb.get("delivered")) +","
-        invoice_information += str(statusdb.get("issued"))+","
-        invoice_information += str(statusdb.get("paid"))+","
-        invoice_information += str(inventorydb.get("total price", None))
+        orderdb = inventorydb.get("orders", None)[0]
+        invoice_information += str(statusdb.get("delivered")) + ","
+        invoice_information += str(statusdb.get("issued")) + ","
+        invoice_information += str(statusdb.get("paid")) + ","
+        invoice_information += str(inventorydb.get("total price")) + ","
+        invoice_information += str(orderdb.get("item")) + ","
+        invoice_information += str(orderdb.get("price")) + ","
+        invoice_information += str(orderdb.get("quantity"))
         return invoice_information
     except:
         return ""
@@ -119,6 +123,8 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                          "Name": name,
                          "Password": password
                      })
+        items = {"Coke": ["5", "0.45"], "Cherry Coke": ["10", "0.50"]}
+        create_invoice(items, userID, 'invoice1')
     elif role == "a Truck Driver":
         DATABASE.put("Truck Driver", userID,
                      {
@@ -218,3 +224,12 @@ def get_assigned_invoices(userID: str):
     except:
         return ""
 
+
+# DATABASE.put('/Testing', 'Testing', '123')
+DATABASE.put("Business Owner", 'JHUGYhjeig4bHIougib',
+                     {
+                         "Address": 'uoft',
+                         "Email": 'email@gmail.com',
+                         "Name": 'Shannon Komguem',
+                         "Password": 'password'
+                     })
