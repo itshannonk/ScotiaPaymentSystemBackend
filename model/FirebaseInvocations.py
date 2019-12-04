@@ -116,11 +116,11 @@ def get_invoice_json(user_id: str, invoice_id: str):
 
 
 def get_current_invoiceID():
-    return DATABASE.get('/Invoices/currentInvoiceID')
+    return DATABASE.get('/Invoices/currentInvoiceID', None)
 
 
 def set_current_invoiceID():
-    return DATABASE.put('/Invoices/currentInvoiceID', str(get_current_invoiceID() + 1))
+    return DATABASE.put("/Invoices", "currentInvoiceID", str(get_current_invoiceID() + 1))
 
 
 def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
