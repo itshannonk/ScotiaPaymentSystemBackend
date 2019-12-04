@@ -1,52 +1,4 @@
 import pyrebase
-
-# """
-# from the website:
-# your function's entrypoint must be defined in a Python source file
-# at the root of your project named main.py
-# """
-# import requests
-# import json
-#
-#
-# def get_customer(request):
-#     r = request.get("https://us-central1-csc207-tli.cloudfunctions.net/testing")
-#     # a Python object (dict) is pretty much a JSON file:
-#     x = {
-#         "name": "John",
-#         "age": 30,
-#         "city": "New York"
-#     }
-#     #idk what it looks like yet but we have to convert it into JSON by
-#     jsonStr = json.dumps(r.toDict())
-#
-#
-#     # the result is a JSON string:
-#     print(jsonStr)
-
-# from firebase.firebase import FirebaseApplication, FirebaseAuthentication
-
-# create user, get user, get invoice, pay invoice, confirm payment,
-
-"""
-from firebase import firebase
-firebase = firebase.FirebaseApplication("https://csc207-tli.firebaseio.com/")
-data = {
-    "Address": "Toronto",
-    "Email": "testin@testing.com",
-    "Invoices": "{\"id\":6,\"price\":0,\"status\":{\"delivered\":true,\"issued\":true,\"paid\":true}}",
-    "Name": "Amy Testing",
-    "Password": "password"
-}
-
-result = firebase.post("/Business Owner/", data)
-print(result)
-"""
-"""
-from the website:
-your function's entrypoint must be defined in a Python source file
-at the root of your project named main.py
-"""
 # import requests
 from flask import Request, Flask
 from model import FirebaseInvocations
@@ -96,18 +48,35 @@ def login_page_get(request: Request):
     except:
         return ","
 
+
 @app.route('/get_customers', methods=['GET'])
 def get_customers(request: Request):
+    """ Return all the business owners' unique ids.
+
+    :param request: flask.Request object.
+    :return: Comma separated string of unique ids.
+    """
     return FirebaseInvocations.get_customers()
+
 
 @app.route('/get_assigned_invoices', methods=['GET'])
 def get_assigned_invoices(request: Request):
-    userID = request.args.get("userID")
-    return FirebaseInvocations.get_assigned_invoices(userID)
+    """ Return the invoices assigned to a given user.
+
+    :param request: flask.Request object.
+    :return: Comma separated string of invoice ids.
+    """
+    user_id = request.args.get("userID")
+    return FirebaseInvocations.get_assigned_invoices(user_id)
+
 
 @app.route('/create_user', methods=['PUT'])
 def create_user(request: Request):
-    print("reached create user main")
+    """ Add a new user to the database.
+
+    :param request: flask.Request object.
+    :return: The new user's unique id.
+    """
     config = {
         "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
         "authDomain": "csc207-tli.firebaseapp.com",
@@ -121,7 +90,6 @@ def create_user(request: Request):
 
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
-    # auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
     user = auth.create_user_with_email_and_password(request.args.get("email"), request.args.get("password"))
     userID = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"), request.args.get("email"), request.args.get("name"),

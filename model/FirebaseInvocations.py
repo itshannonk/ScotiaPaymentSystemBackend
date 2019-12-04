@@ -123,20 +123,32 @@ def set_current_invoiceID():
     return DATABASE.put("/Invoices", "currentInvoiceID", str(get_current_invoiceID() + 1))
 
 
-def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
-    "reached create user firebase"
+def create_user(address: str, email: str, name: str, password: str, role: str,
+                user_id: str) -> None:
+    """ Add a new user to the data base.
+
+    :param address: User's address (only applicable to business owners).
+    :param email: User's email.
+    :param name: User's first and last names.
+    :param password: User's password.
+    :param role: User's role (Business Owner/Truck Driver/CocaCola).
+    :param user_id: User's unique id.
+    :return: None.
+    """
     if role == "a Business Owner":
-        DATABASE.put("Business Owner", userID,
+        # Add the user to the database.
+        DATABASE.put("Business Owner", user_id,
                      {
                          "Address": address,
                          "Email": email,
                          "Name": name,
                          "Password": password
                      })
+        # Initialize the user with an invoice.
         items = {"Coke": ["5", "0.45"], "Cherry Coke": ["10", "0.50"]}
-        create_invoice(items, userID, get_current_invoiceID())
+        create_invoice(items, user_id, get_current_invoiceID())
     elif role == "a Truck Driver":
-        DATABASE.put("Truck Driver", userID,
+        DATABASE.put("Truck Driver", user_id,
                      {
                          "Email": email,
                          "Name": name,
@@ -144,7 +156,7 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                          "Customers": {}
                      })
     else:
-        DATABASE.put(role, userID,
+        DATABASE.put(role, user_id,
                      {
                          "Email": email,
                          "Name": name,
@@ -201,47 +213,39 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                      }
                  })
     DATABASE.put("Truck Driver/nSTFFgWdZvYpenarvvTmpXxJIYA3/Assigned Invoices", invoiceID, userID)
+
+
 # Returns customerID
-def get_customers():
-    """ Change invoice_id's status based on status_type and new_value.
+def get_customers() -> str:
+    """ Return all the business owners' unique ids.
 
-    :param user_id: Unique id of the user to whom the invoice belongs.
-    :param invoice_id: Unique id of the invoice to be changed.
-    :param status_type: The status that will be changed.
-    :param new_value: The new status' value (either True or False).
-    :return: Return True iff the invoice path is in the database.
+    :return: Comma separated string of unique ids.
     """
-    listOfCustomerIDs = ""
+    customer_ids = ""
     try:
-        inventorydb = DATABASE.get('Business Owner', None)
-        for key in inventorydb:
-            listOfCustomerIDs += str(key) + ','
-        return listOfCustomerIDs[:-1]
-    except:
-        return
-
-
-def get_assigned_invoices(userID: str):
-    # and invoice IDs lol
-    customer_path = '/Truck Driver/' + userID + '/Assigned Invoices'
-
-    listOfCustomerIDs = ""
-    try:
-
-        inventorydb = DATABASE.get(customer_path, None)
-        for key in inventorydb:
-            listOfCustomerIDs += key + ":" + DATABASE.get(customer_path, key) + ","
-
-        return listOfCustomerIDs[:-1]
+        inventory_db = DATABASE.get('Business Owner', None)
+        for key in inventory_db:
+            customer_ids += str(key) + ','
+        return customer_ids[:-1]
     except:
         return ""
 
 
-# DATABASE.put('/Testing', 'Testing', '123')
-DATABASE.put("Business Owner", 'JHUGYhjeig4bHIougib',
-             {
-                 "Address": 'uoft',
-                 "Email": 'email@gmail.com',
-                 "Name": 'Shannon Komguem',
-                 "Password": 'password'
-             })
+def get_assigned_invoices(user_id: str) -> str:
+    """ Return a list of invoices assigne to the user with id user_id.
+
+    :param user_id: Customer's unique id/
+    :return: Comma separates string of invoice ids.
+    """
+    customer_path = '/Truck Driver/' + user_id + '/Assigned Invoices'
+
+    customer_ids = ""
+    try:
+
+        inventory_db = DATABASE.get(customer_path, None)
+        for key in inventory_db:
+            customer_ids += key + ":" + DATABASE.get(customer_path, key) + ","
+
+        return customer_ids[:-1]
+    except:
+        return ""
