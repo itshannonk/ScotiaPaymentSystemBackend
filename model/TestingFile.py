@@ -4,6 +4,10 @@ from model import Invoice
 import pyrebase
 import json
 from flask import *
+<<<<<<< HEAD
+import string
+import random
+=======
 
 app = Flask(__name__)
 
@@ -11,10 +15,9 @@ invoiceObject = Invoice.Invoice()
 JSONversion = json.dumps(vars(invoiceObject))
 # print(JSONversion)
 
+>>>>>>> 43d997e9964f5088f358d39cb79c6cf4639dd17b
 DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
-
-listOfInvoiceIDs = ""
 # userDATA = DATABASE.get('/Business Owner', 'YwF7HkeUCkRUU6V00lkh2d0p5512')
 # userDATA = userDATA.get('Invoices', None)
 # print(userDATA)
@@ -156,7 +159,6 @@ invoice_information += str(orderdb.get("item")) + ","
 invoice_information += str(orderdb.get("price")) + ","
 invoice_information += str(orderdb.get("quantity"))
 print(invoice_information)
-
 
 
 # customer_path = '/Truck Driver/' + "nSTFFgWdZvYpenarvvTmpXxJIYA3" + '/Assigned Invoices'
