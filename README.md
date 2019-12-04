@@ -4,7 +4,7 @@ This is the backend for an Android app created in CSC207 in collaboration with S
 ## Motivation
 As of now, there are a variety of ways that small business (eg. a convenience store), can pay for good delivered by their suppliers.
 The plethora of options often runs into documentation problems as it is hard to keep track of payments and invoices in this un-standardized system.
-What we have built is a business-to-business platform that allows user to issues, track and pay invoices.
+What we have built is a business-to-business platform that allows user to issue, track and pay invoices.
 In this repository, you will find cloud functions that create, manage and edit data concerning the users of the app.
 
 ## Tech/frameworks used
