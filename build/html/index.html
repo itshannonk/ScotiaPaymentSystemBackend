@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to csc207-project-backend’s documentation! &#8212; csc207-project-backend  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-main">
+<span id="welcome-to-csc207-project-backend-s-documentation"></span><h1>Welcome to csc207-project-backend’s documentation!<a class="headerlink" href="#module-main" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="main.create_invoice">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">create_invoice</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.create_invoice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an invoice using the given data (item, quantity, and price).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.create_user">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">create_user</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.create_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new user to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The new user’s unique id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_assigned_invoices">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_assigned_invoices</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_assigned_invoices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the invoices assigned to a given user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Comma separated string of invoice ids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_current_invoiceID">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_current_invoiceID</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_current_invoiceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the most recent invoice’s id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string containing an invoice’s id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_customers">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_customers</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_customers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the business owners’ unique ids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Comma separated string of unique ids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_display_name">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_display_name</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_display_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a given user’s name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string containing the user’s name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_invoice_by_id">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_invoice_by_id</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_invoice_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an information about a given invoice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A json object containing an invoice’s information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_invoice_information">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_invoice_information</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_invoice_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information about a given invoice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A comma separated string containing the “delivered, issued, paid,</p>
+</dd>
+</dl>
+<p>price” information about an invoice.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_list_of_invoice_ids">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_list_of_invoice_ids</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_list_of_invoice_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of a given user’s assigned invoices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string containing comma-separated invoice ids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_name">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_name</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a given user’s data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A json object containing a user’s data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.get_user_by_id">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">get_user_by_id</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_user_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a given user’s data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A json object containing a user’s data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.login_page_get">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">login_page_get</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.login_page_get" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>HTTP Cloud Function.</dt><dd><p>This deals check the authentication of the user and also the retrieval of the userID</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<em>flask.Request</em>) – The request object.</p></li>
+<li><p><strong>&lt;http</strong> – //flask.pocoo.org/docs/1.0/api/#flask.Request&gt;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The response text, or any set of values that can be turned into a
+Response object using <cite>make_response</cite>
+&lt;<a class="reference external" href="http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response">http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response</a>&gt;.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.set_current_invoiceID">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">set_current_invoiceID</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.set_current_invoiceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increment the current invoice’s id by 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="main.set_invoice_status">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">set_invoice_status</code><span class="sig-paren">(</span><em class="sig-param">request: flask.Request</em><span class="sig-paren">)</span><a class="headerlink" href="#main.set_invoice_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change a given invoice’s status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – flask.Request object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string containing the request’s status.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-model.FirebaseInvocations"></span><p>This module will be used to make calls to the real-time database.</p>
+<dl class="function">
+<dt id="model.FirebaseInvocations.create_invoice">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">create_invoice</code><span class="sig-paren">(</span><em class="sig-param">item_dict: dict</em>, <em class="sig-param">user_id: str</em>, <em class="sig-param">invoice_id: str</em><span class="sig-paren">)</span><a class="headerlink" href="#model.FirebaseInvocations.create_invoice" title="Permalink to this definition">¶</a></dt>
+<dd><p>:param item_dict:key is “item name”, value is list like [“5”, “4.5”], “5”
+is quatity and “4.5” is price
+{“apple”: [“5”, “4.5”], “banana”: [“10”, “3.5”]}
+:return: None</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.create_user">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">create_user</code><span class="sig-paren">(</span><em class="sig-param">address: str</em>, <em class="sig-param">email: str</em>, <em class="sig-param">name: str</em>, <em class="sig-param">password: str</em>, <em class="sig-param">role: str</em>, <em class="sig-param">user_id: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#model.FirebaseInvocations.create_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new user to the data base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> – User’s address (only applicable to business owners).</p></li>
+<li><p><strong>email</strong> – User’s email.</p></li>
+<li><p><strong>name</strong> – User’s first and last names.</p></li>
+<li><p><strong>password</strong> – User’s password.</p></li>
+<li><p><strong>role</strong> – User’s role (Business Owner/Truck Driver/CocaCola).</p></li>
+<li><p><strong>user_id</strong> – User’s unique id.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_assigned_invoices">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_assigned_invoices</code><span class="sig-paren">(</span><em class="sig-param">user_id: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#model.FirebaseInvocations.get_assigned_invoices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of invoices assigne to the user with id user_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_id</strong> – Customer’s unique id/</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Comma separates string of invoice ids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_current_invoiceID">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_current_invoiceID</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#model.FirebaseInvocations.get_current_invoiceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the most recent invoice’s id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A string containing an invoice’s id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_current_user">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_current_user</code><span class="sig-paren">(</span><em class="sig-param">email: str</em>, <em class="sig-param">password: str</em><span class="sig-paren">)</span><a class="headerlink" href="#model.FirebaseInvocations.get_current_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current user’s information for authentication purposes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_customers">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_customers</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#model.FirebaseInvocations.get_customers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the business owners’ unique ids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Comma separated string of unique ids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_invoice_information">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_invoice_information</code><span class="sig-paren">(</span><em class="sig-param">user_id: str</em>, <em class="sig-param">invoice_id: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#model.FirebaseInvocations.get_invoice_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a given invoice’s information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> – User’s unique id.</p></li>
+<li><p><strong>invoice_id</strong> – Invoice’s unique id.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A comma separated string containing the “delivered, issued, paid,</p>
+</dd>
+</dl>
+<p>price” information about an invoice.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_invoice_json">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_invoice_json</code><span class="sig-paren">(</span><em class="sig-param">user_id: str</em>, <em class="sig-param">invoice_id: str</em><span class="sig-paren">)</span><a class="headerlink" href="#model.FirebaseInvocations.get_invoice_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the invoice with id invoice_id as a json object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> – User’s unique id.</p></li>
+<li><p><strong>invoice_id</strong> – The invoice’s unique id.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A json object containing the invoice.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_list_of_invoice_ids">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_list_of_invoice_ids</code><span class="sig-paren">(</span><em class="sig-param">user_id: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#model.FirebaseInvocations.get_list_of_invoice_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of a given user’s invoices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_id</strong> – User’s unique id.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a string of invoiceIDs under the userID, where it is separated by</p>
+</dd>
+</dl>
+<p>commas.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_login_name">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_login_name</code><span class="sig-paren">(</span><em class="sig-param">user_id: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#model.FirebaseInvocations.get_login_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a the name of the user with id user_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_id</strong> – User’s unique is.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string containing a user’s name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.get_user_data">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">get_user_data</code><span class="sig-paren">(</span><em class="sig-param">user_type: str</em>, <em class="sig-param">user_id: str</em><span class="sig-paren">)</span><a class="headerlink" href="#model.FirebaseInvocations.get_user_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a user’s data base on user_type and user_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_type</strong> – Business Owner, CocaCola, Truck Driver</p></li>
+<li><p><strong>user_id</strong> – User’s unique id in the database</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a json object containing the user’s information</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.set_current_invoiceID">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">set_current_invoiceID</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#model.FirebaseInvocations.set_current_invoiceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increment the current invoice’s id by 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model.FirebaseInvocations.set_invoice_status">
+<code class="sig-prename descclassname">model.FirebaseInvocations.</code><code class="sig-name descname">set_invoice_status</code><span class="sig-paren">(</span><em class="sig-param">user_id: str</em>, <em class="sig-param">invoice_id: str</em>, <em class="sig-param">status_type: str</em>, <em class="sig-param">new_value: bool</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#model.FirebaseInvocations.set_invoice_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change invoice_id’s status based on status_type and new_value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> – Unique id of the user to whom the invoice belongs.</p></li>
+<li><p><strong>invoice_id</strong> – Unique id of the invoice to be changed.</p></li>
+<li><p><strong>status_type</strong> – The status that will be changed.</p></li>
+<li><p><strong>new_value</strong> – The new status’ value (either True or False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Return True iff the invoice path is in the database.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">csc207-project-backend</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, csc207 group.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
