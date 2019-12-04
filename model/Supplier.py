@@ -23,7 +23,6 @@ class Supplier:
         self.invoices = invoices
         self.customers = customers
 
-
     def getsupplier(self):
         return {
             "Name": self.name,

@@ -16,6 +16,7 @@ class Status:
     """
     Converts the Status into a DICT just so it's easier to convert into a JSON file later.
     """
+
     def getstatus(self):
         return {
             "Issued": self.issued,

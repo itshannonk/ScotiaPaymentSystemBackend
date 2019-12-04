@@ -5,6 +5,7 @@ from flask import Request, Flask
 from firebase import firebase
 import json
 import pyrebase
+
 # Initialize database
 DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
@@ -79,6 +80,7 @@ def get_list_of_invoice_ids(userID):
     except:
         return ""
 
+
 def get_invoice_information(userID, invoiceID):
     """
     :param userID: the userId
@@ -113,6 +115,14 @@ def get_invoice_json(user_id: str, invoice_id: str):
     return DATABASE.get(invoice_path, invoice_id)
 
 
+def get_current_invoiceID():
+    return DATABASE.get('/Invoices/currentInvoiceID')
+
+
+def set_current_invoiceID():
+    return DATABASE.put('/Invoices/currentInvoiceID', str(get_current_invoiceID() + 1))
+
+
 def create_user(address: str, email: str, name: str, password: str, role: str, userID: str):
     "reached create user firebase"
     if role == "a Business Owner":
@@ -124,7 +134,7 @@ def create_user(address: str, email: str, name: str, password: str, role: str, u
                          "Password": password
                      })
         items = {"Coke": ["5", "0.45"], "Cherry Coke": ["10", "0.50"]}
-        create_invoice(items, userID, 'invoice1')
+        create_invoice(items, userID, get_current_invoiceID())
     elif role == "a Truck Driver":
         DATABASE.put("Truck Driver", userID,
                      {
@@ -190,7 +200,14 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'delivered': False
                      }
                  })
+<<<<<<< HEAD
     DATABASE.put("Truck Driver/nSTFFgWdZvYpenarvvTmpXxJIYA3/Assigned Invoices", "invoice" + invoiceID, userID)
+=======
+
+
+# Returns customerID
+
+>>>>>>> 43d997e9964f5088f358d39cb79c6cf4639dd17b
 def get_customers():
     """ Change invoice_id's status based on status_type and new_value.
 
@@ -208,6 +225,7 @@ def get_customers():
         return listOfCustomerIDs[:-1]
     except:
         return
+
 
 def get_assigned_invoices(userID: str):
     # and invoice IDs lol
@@ -227,9 +245,9 @@ def get_assigned_invoices(userID: str):
 
 # DATABASE.put('/Testing', 'Testing', '123')
 DATABASE.put("Business Owner", 'JHUGYhjeig4bHIougib',
-                     {
-                         "Address": 'uoft',
-                         "Email": 'email@gmail.com',
-                         "Name": 'Shannon Komguem',
-                         "Password": 'password'
-                     })
+             {
+                 "Address": 'uoft',
+                 "Email": 'email@gmail.com',
+                 "Name": 'Shannon Komguem',
+                 "Password": 'password'
+             })
