@@ -1,7 +1,6 @@
 """
 This module will be used to make calls to the real-time database.
 """
-from flask import Request, Flask
 from firebase import firebase
 import json
 import pyrebase
@@ -69,8 +68,7 @@ def get_list_of_invoice_ids(user_id: str) -> str:
     """ Return a list of a given user's invoices.
 
     :param user_id: User's unique id.
-    :return: a string of invoiceIDs under the userID, where it is separated by
-    commas.
+    :return: a string of invoiceIDs under the userID, where it is separated by commas.
     """
     invoice_ids = ""
     try:
@@ -87,8 +85,7 @@ def get_invoice_information(user_id: str, invoice_id: str) -> str:
 
     :param user_id: User's unique id.
     :param invoice_id: Invoice's unique id.
-    :return: A comma separated string containing the "delivered, issued, paid,
-    price" information about an invoice.
+    :return: A comma separated string containing the "delivered, issued, paid, price" information about an invoice.
     """
     invoice_information = ""
     try:
@@ -198,11 +195,9 @@ def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
 
 
 def create_invoice(item_dict: dict, user_id: str, invoice_id: str):
-    """
+    """ Create a new invoice.
 
-    :param item_dict:key is "item name", value is list like ["5", "4.5"], "5"
-    is quatity and "4.5" is price
-    {"apple": ["5", "4.5"], "banana": ["10", "3.5"]}
+    :param item_dict: key is "item name", value is list like ["5", "4.5"], "5" is quantity and "4.5" is price {"apple": ["5", "4.5"], "banana": ["10", "3.5"]}
     :return: None
     """
     # calculate the total price
@@ -251,7 +246,7 @@ def get_customers() -> str:
 def get_assigned_invoices(user_id: str) -> str:
     """ Return a list of invoices assigne to the user with id user_id.
 
-    :param user_id: Customer's unique id/
+    :param user_id: Customer's unique id.
     :return: Comma separates string of invoice ids.
     """
     customer_path = '/Truck Driver/' + user_id + '/Assigned Invoices'

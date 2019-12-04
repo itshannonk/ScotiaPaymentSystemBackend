@@ -1,5 +1,8 @@
+"""
+This module has been hosted using Google Cloud Platform. Every function has an
+http endpoint that has been deployed with GCP.
+"""
 import pyrebase
-# import requests
 from flask import Request, Flask
 from model import FirebaseInvocations
 
@@ -152,8 +155,7 @@ def get_invoice_information(request: Request):
     """ Get information about a given invoice.
 
     :param request: flask.Request object.
-    :return: A comma separated string containing the "delivered, issued, paid,
-    price" information about an invoice.
+    :return: A comma separated string containing the "delivered, issued, paid, price" information about an invoice.
     """
     user_id = request.args['userID']
     invoice_id = request.args['invoiceID']
