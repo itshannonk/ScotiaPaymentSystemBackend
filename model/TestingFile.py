@@ -160,9 +160,6 @@ invoice_information += str(orderdb.get("price")) + ","
 invoice_information += str(orderdb.get("quantity"))
 print(invoice_information)
 
-<<<<<<< HEAD
-=======
-
 
 # customer_path = '/Truck Driver/' + "nSTFFgWdZvYpenarvvTmpXxJIYA3" + '/Assigned Invoices'
 #
@@ -177,4 +174,3 @@ print(invoice_information)
 # except:
 #     print("nothing")
 #
->>>>>>> 43d997e9964f5088f358d39cb79c6cf4639dd17b

@@ -200,14 +200,8 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'delivered': False
                      }
                  })
-<<<<<<< HEAD
     DATABASE.put("Truck Driver/nSTFFgWdZvYpenarvvTmpXxJIYA3/Assigned Invoices", "invoice" + invoiceID, userID)
-=======
-
-
 # Returns customerID
-
->>>>>>> 43d997e9964f5088f358d39cb79c6cf4639dd17b
 def get_customers():
     """ Change invoice_id's status based on status_type and new_value.
 
