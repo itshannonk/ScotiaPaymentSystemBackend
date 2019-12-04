@@ -4,11 +4,12 @@ from model import Invoice
 import pyrebase
 import json
 from flask import *
+
 app = Flask(__name__)
 
 invoiceObject = Invoice.Invoice()
 JSONversion = json.dumps(vars(invoiceObject))
-#print(JSONversion)
+# print(JSONversion)
 
 DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
@@ -16,11 +17,11 @@ DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
 listOfInvoiceIDs = ""
 # userDATA = DATABASE.get('/Business Owner', 'YwF7HkeUCkRUU6V00lkh2d0p5512')
 # userDATA = userDATA.get('Invoices', None)
-#print(userDATA)
+# print(userDATA)
 
-#print(userDATA)
+# print(userDATA)
 
-#print(inventorydb)
+# print(inventorydb)
 # listOfInvoiceIDs = ""
 # for key in userDATA:
 #     #print(key)
@@ -35,10 +36,10 @@ listOfInvoiceIDs = ""
 #             break
 #         except:
 #             pass
-            # print("no")
-    # listOfInvoiceIDs += key + ','
-    #print(listOfInvoiceIDs)
-#print(listOfInvoiceIDs[:-1])
+# print("no")
+# listOfInvoiceIDs += key + ','
+# print(listOfInvoiceIDs)
+# print(listOfInvoiceIDs[:-1])
 
 
 # config = {
@@ -65,7 +66,6 @@ listOfInvoiceIDs = ""
 #              })
 
 
-<<<<<<< HEAD
 def create_invoice(item_dict: dict, userID: str, invoiceID: str):
     """
 
@@ -87,7 +87,7 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
         item_dict_new["price"] = item_dict[item][1]
         # append the small dict to the order list
         order_list.append(item_dict_new)
-    DATABASE.put("Invoices/"+userID, invoiceID,
+    DATABASE.put("Invoices/" + userID, invoiceID,
                  {
                      "orders": order_list,
                      'total price': str(price),
@@ -95,14 +95,15 @@ def create_invoice(item_dict: dict, userID: str, invoiceID: str):
                          'issued': True,
                          'paid': False,
                          'delivered': False
-                    }
+                     }
                  })
+
+
 # item_dict = {}
 # print([request.args.get("quantity"), request.args.get("price")])
 # item_dict[request.args.get("item")] = [request.args.get("quantity"),
 #                                        request.args.get("price")]
-create_invoice({"hi":["5","4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
-=======
+create_invoice({"hi": ["5", "4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
 # def create_invoice(item_dict: dict, userID: str, invoiceID: str):
 #     """
 #
@@ -156,7 +157,7 @@ invoice_information += str(orderdb.get("price")) + ","
 invoice_information += str(orderdb.get("quantity"))
 print(invoice_information)
 
->>>>>>> 89276964e8a7d4ba882ff42dddfd9b6c52671851
+
 
 # customer_path = '/Truck Driver/' + "nSTFFgWdZvYpenarvvTmpXxJIYA3" + '/Assigned Invoices'
 #
