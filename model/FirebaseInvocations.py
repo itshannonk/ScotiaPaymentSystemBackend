@@ -10,8 +10,13 @@ DATABASE = firebase.FirebaseApplication('https://csc207-tli.firebaseio.com/',
                                         None)
 
 
-def get_current_user(email: str, password: str):
-    """ Get the current user's information for authentication purposes.
+def get_current_user(email: str, password: str) -> json:
+    """ Return a json object containing database information about the user trying
+    to log in.
+
+    :param email: User's email.
+    :param password: user's password.
+    :return: A json object.
     """
     config = {
         "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
@@ -28,7 +33,7 @@ def get_current_user(email: str, password: str):
     return auth.sign_in_with_email_and_password(email, password)
 
 
-def get_user_data(user_type: str, user_id: str):
+def get_user_data(user_type: str, user_id: str) -> json:
     """ Get a user's data base on user_type and user_id.
 
     :param user_type: Business Owner, CocaCola, Truck Driver
@@ -105,7 +110,7 @@ def get_invoice_information(user_id: str, invoice_id: str) -> str:
         return ""
 
 
-def get_invoice_json(user_id: str, invoice_id: str):
+def get_invoice_json(user_id: str, invoice_id: str) -> json:
     """ Return the invoice with id invoice_id as a json object.
 
     :param user_id: User's unique id.
@@ -194,7 +199,7 @@ def set_invoice_status(user_id: str, invoice_id: str, status_type: str,
     return False
 
 
-def create_invoice(item_dict: dict, user_id: str, invoice_id: str):
+def create_invoice(item_dict: dict, user_id: str, invoice_id: str) -> None:
     """ Create a new invoice.
 
     :param item_dict: key is "item name", value is list like ["5", "4.5"], "5" is quantity and "4.5" is price {"apple": ["5", "4.5"], "banana": ["10", "3.5"]}
@@ -261,3 +266,7 @@ def get_assigned_invoices(user_id: str) -> str:
         return customer_ids[:-1]
     except:
         return ""
+
+
+if __name__ == '__main__':
+    print(get_current_user('testing@gmail.com', 'password'))
