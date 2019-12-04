@@ -212,7 +212,7 @@ def create_invoice(item_dict: dict, user_id: str, invoice_id: str):
     for item in item_dict:
         # arrange each item info to a small dict
         item_dict_new = {}
-        price += round(int(item_dict[item][0]) * float(item_dict[item][1]),2)
+        price += int(item_dict[item][0]) * float(item_dict[item][1])
         item_dict_new["item"] = item
         item_dict_new["quantity"] = item_dict[item][0]
         item_dict_new["price"] = item_dict[item][1]
@@ -221,7 +221,7 @@ def create_invoice(item_dict: dict, user_id: str, invoice_id: str):
     DATABASE.put("Invoices/" + user_id, invoice_id,
                  {
                      "orders": order_list,
-                     'total price': str(price),
+                     'total price': str(round(price, 2)),
                      'status': {
                          'issued': True,
                          'paid': False,
