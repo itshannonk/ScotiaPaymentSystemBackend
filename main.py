@@ -21,23 +21,8 @@ def login_page_get(request: Request):
         Response object using `make_response`
         <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
     """
-
-    config = {
-        "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
-        "authDomain": "csc207-tli.firebaseapp.com",
-        "databaseURL": "https://csc207-tli.firebaseio.com",
-        "projectId": "csc207-tli",
-        "storageBucket": "csc207-tli.appspot.com",
-        "messagingSenderId": "707734809591",
-        "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
-        "measurementId": "G-VQCPWR41LV"
-    }
-    firebase = pyrebase.initialize_app(config)
-    auth = firebase.auth()
-    user = auth.sign_in_with_email_and_password(request.args.get("email"),
+    user = FirebaseInvocations.get_current_user(request.args.get("email"),
                                                 request.args.get("password"))
-    # TODO: change the statement above to the commented one below:
-    # user = FirebaseInvocations.get_current_user(request.args.get("email"), request.args.get("email"))
     try:
         if FirebaseInvocations.get_user_data('Business Owner', user["localId"]):
             return "Business Owner" + "," + user["localId"]
@@ -83,29 +68,15 @@ def create_user(request: Request):
     :param request: flask.Request object.
     :return: The new user's unique id.
     """
-    config = {
-        "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
-        "authDomain": "csc207-tli.firebaseapp.com",
-        "databaseURL": "https://csc207-tli.firebaseio.com",
-        "projectId": "csc207-tli",
-        "storageBucket": "csc207-tli.appspot.com",
-        "messagingSenderId": "707734809591",
-        "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
-        "measurementId": "G-VQCPWR41LV"
-    }
-
-    firebase = pyrebase.initialize_app(config)
-    auth = firebase.auth()
-    user = auth.create_user_with_email_and_password(request.args.get("email"),
-                                                    request.args.get(
-                                                        "password"))
-    userID = user["localId"]
+    user = FirebaseInvocations.get_current_user(request.args.get("email"),
+                                                request.args.get("password"))
+    user_id = user["localId"]
     FirebaseInvocations.create_user(request.args.get("address"),
                                     request.args.get("email"),
                                     request.args.get("name"),
                                     request.args.get("password"),
-                                    request.args.get("role"), userID)
-    return userID
+                                    request.args.get("role"), user_id)
+    return user_id
 
 
 @app.route('/get_display_name', methods=['GET'])
