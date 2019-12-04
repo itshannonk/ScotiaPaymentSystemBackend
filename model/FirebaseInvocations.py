@@ -109,6 +109,21 @@ def get_invoice_information(user_id: str, invoice_id: str) -> str:
     except:
         return ""
 
+def get_user_information(user_id: str) -> str:
+    """
+
+    :param user_id:
+    :return:
+    """
+    user_information = ""
+    try:
+        user_db = DATABASE.get("Business Owner", user_id)
+        user_information += str(user_db.get("Address")) + ","
+        user_information += str(user_db.get("Email")) + ","
+        user_information += str(user_db.get("Name"))
+        return user_information
+    except:
+        return ""
 
 def get_invoice_json(user_id: str, invoice_id: str) -> json:
     """ Return the invoice with id invoice_id as a json object.

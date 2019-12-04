@@ -172,4 +172,11 @@ create_invoice({"hi": ["5", "4.5"]}, "FEkg7hBAVxPgbwHHp2VmNwVCCwK2", "invoice2")
 # except:
 #     print("nothing")
 #
-print(DATABASE.get('/Invoices/currentInvoiceID', None))
+# print(DATABASE.get('/Invoices/currentInvoiceID', None))
+#
+# user_information = ""
+# user_db = DATABASE.get("Business Owner", "JHUGYhjeig4bHIougib")
+# user_information += str(user_db.get("Address")) + ","
+# user_information += str(user_db.get("Email")) + ","
+# user_information += str(user_db.get("Name"))
+# print(user_information)
