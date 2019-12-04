@@ -144,7 +144,8 @@ def set_current_invoiceID(request: Request):
     :param request: flask.Request object.
     :return: None.
     """
-    return FirebaseInvocations.set_current_invoiceID()
+    newVal = request.args['newVal']
+    return FirebaseInvocations.set_current_invoiceID(newVal)
 
 
 @app.route('/get_invoice_information', methods=['GET'])
