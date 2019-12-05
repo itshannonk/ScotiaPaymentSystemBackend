@@ -90,7 +90,8 @@ def get_invoice_information(user_id: str, invoice_id: str) -> str:
 
     :param user_id: User's unique id.
     :param invoice_id: Invoice's unique id.
-    :return: A comma separated string containing the "delivered, issued, paid, price" information about an invoice.
+    :return: A comma separated string containing the "delivered, issued, paid,
+    total price, item, price, quantity" information about an invoice.
     """
     invoice_information = ""
     try:
