@@ -33,6 +33,29 @@ def get_current_user(email: str, password: str) -> json:
     return auth.sign_in_with_email_and_password(email, password)
 
 
+def get_user_registration(email: str, password: str) -> json:
+    """ Add a new user to Firebase' authentication and return a json object
+    containing database information about the new user.
+
+    :param email: User's email
+    :param password: User's address.
+    :return: A json object.
+    """
+    config = {
+        "apiKey": "AIzaSyCkjsbkDtmKUU_77XHDYfNnBZS1E3F82iw",
+        "authDomain": "csc207-tli.firebaseapp.com",
+        "databaseURL": "https://csc207-tli.firebaseio.com",
+        "projectId": "csc207-tli",
+        "storageBucket": "csc207-tli.appspot.com",
+        "messagingSenderId": "707734809591",
+        "appId": "1:707734809591:web:313eb97ac705e6ebb21cf2",
+        "measurementId": "G-VQCPWR41LV"
+    }
+    firebase_db = pyrebase.initialize_app(config)
+    auth = firebase_db.auth()
+    return auth.create_user_with_email_and_password(email, password)
+
+
 def get_user_data(user_type: str, user_id: str) -> json:
     """ Get a user's data base on user_type and user_id.
 
